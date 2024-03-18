@@ -1,0 +1,872 @@
+2024-03-17 05:19:04 GMT [49]: [3-1] db=,user=,app= LOG:  starting PostgreSQL 13.8 (Debian 13.8-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+2024-03-17 05:19:04 GMT [49]: [4-1] db=,user=,app= LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-03-17 05:19:04 GMT [51]: [1-1] db=,user=,app= LOG:  database system was shut down at 2024-03-17 05:19:03 GMT
+2024-03-17 05:19:04 GMT [49]: [5-1] db=,user=,app= LOG:  database system is ready to accept connections
+2024-03-17 05:19:04 GMT [60]: [1-1] db=[unknown],user=[unknown],app=[unknown] LOG:  connection received: host=[local]
+2024-03-17 05:19:04 GMT [60]: [2-1] db=postgres,user=postgres,app=[unknown] LOG:  connection authorized: user=postgres database=postgres application_name=psql
+2024-03-17 05:19:04 GMT [60]: [3-1] db=postgres,user=postgres,app=psql LOG:  statement: SELECT 1 FROM pg_database WHERE datname = 'postgres' ;
+2024-03-17 05:19:04 GMT [60]: [4-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.518 ms
+2024-03-17 05:19:04 GMT [60]: [5-1] db=postgres,user=postgres,app=psql LOG:  disconnection: session time: 0:00:00.003 user=postgres database=postgres host=[local]
+2024-03-17 05:19:04 GMT [62]: [1-1] db=[unknown],user=[unknown],app=[unknown] LOG:  connection received: host=[local]
+2024-03-17 05:19:04 GMT [62]: [2-1] db=postgres,user=postgres,app=[unknown] LOG:  connection authorized: user=postgres database=postgres application_name=psql
+2024-03-17 05:19:04 GMT [62]: [3-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE SEQUENCE public.group_sequence
+	    START WITH 1
+	    INCREMENT BY 1
+	    NO MINVALUE
+	    NO MAXVALUE
+	    CACHE 1;
+2024-03-17 05:19:04 GMT [62]: [4-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.175 ms
+2024-03-17 05:19:04 GMT [62]: [5-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.group_sequence OWNER TO postgres;
+2024-03-17 05:19:04 GMT [62]: [6-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.581 ms
+2024-03-17 05:19:04 GMT [62]: [7-1] db=postgres,user=postgres,app=psql LOG:  statement: SET default_tablespace = '';
+2024-03-17 05:19:04 GMT [62]: [8-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.044 ms
+2024-03-17 05:19:04 GMT [62]: [9-1] db=postgres,user=postgres,app=psql LOG:  statement: SET default_table_access_method = heap;
+2024-03-17 05:19:04 GMT [62]: [10-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.099 ms
+2024-03-17 05:19:04 GMT [62]: [11-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE TABLE public.groups (
+	    id bigint NOT NULL,
+	    name character varying(255)
+	);
+2024-03-17 05:19:04 GMT [62]: [12-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.951 ms
+2024-03-17 05:19:04 GMT [62]: [13-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.groups OWNER TO postgres;
+2024-03-17 05:19:04 GMT [62]: [14-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.515 ms
+2024-03-17 05:19:04 GMT [62]: [15-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE TABLE public.groups_products (
+	    group_id bigint NOT NULL,
+	    product_id bigint NOT NULL
+	);
+2024-03-17 05:19:04 GMT [62]: [16-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.780 ms
+2024-03-17 05:19:04 GMT [62]: [17-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.groups_products OWNER TO postgres;
+2024-03-17 05:19:04 GMT [62]: [18-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.476 ms
+2024-03-17 05:19:04 GMT [62]: [19-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE TABLE public.groups_relations (
+	    group_id bigint NOT NULL,
+	    child_id bigint NOT NULL
+	);
+2024-03-17 05:19:04 GMT [62]: [20-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.684 ms
+2024-03-17 05:19:04 GMT [62]: [21-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.groups_relations OWNER TO postgres;
+2024-03-17 05:19:04 GMT [62]: [22-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.485 ms
+2024-03-17 05:19:04 GMT [62]: [23-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE SEQUENCE public.order_sequence
+	    START WITH 1
+	    INCREMENT BY 1
+	    NO MINVALUE
+	    NO MAXVALUE
+	    CACHE 1;
+2024-03-17 05:19:04 GMT [62]: [24-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.675 ms
+2024-03-17 05:19:04 GMT [62]: [25-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.order_sequence OWNER TO postgres;
+2024-03-17 05:19:04 GMT [62]: [26-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.522 ms
+2024-03-17 05:19:04 GMT [62]: [27-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE TABLE public.orders (
+	    id bigint NOT NULL,
+	    date_of_purchase timestamp without time zone,
+	    user_login character varying(255)
+	);
+2024-03-17 05:19:04 GMT [62]: [28-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.684 ms
+2024-03-17 05:19:04 GMT [62]: [29-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.orders OWNER TO postgres;
+2024-03-17 05:19:04 GMT [62]: [30-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.573 ms
+2024-03-17 05:19:04 GMT [62]: [31-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE SEQUENCE public.product_sequence
+	    START WITH 1
+	    INCREMENT BY 1
+	    NO MINVALUE
+	    NO MAXVALUE
+	    CACHE 1;
+2024-03-17 05:19:04 GMT [62]: [32-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.902 ms
+2024-03-17 05:19:04 GMT [62]: [33-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.product_sequence OWNER TO postgres;
+2024-03-17 05:19:04 GMT [62]: [34-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.585 ms
+2024-03-17 05:19:04 GMT [62]: [35-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE TABLE public.products (
+	    id bigint NOT NULL,
+	    file_path character varying(255),
+	    name character varying(255),
+	    price integer NOT NULL
+	);
+2024-03-17 05:19:04 GMT [62]: [36-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.652 ms
+2024-03-17 05:19:04 GMT [62]: [37-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.products OWNER TO postgres;
+2024-03-17 05:19:04 GMT [62]: [38-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.612 ms
+2024-03-17 05:19:04 GMT [62]: [39-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE SEQUENCE public.purchase_sequence
+	    START WITH 1
+	    INCREMENT BY 1
+	    NO MINVALUE
+	    NO MAXVALUE
+	    CACHE 1;
+2024-03-17 05:19:04 GMT [62]: [40-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.743 ms
+2024-03-17 05:19:04 GMT [62]: [41-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.purchase_sequence OWNER TO postgres;
+2024-03-17 05:19:04 GMT [62]: [42-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.549 ms
+2024-03-17 05:19:04 GMT [62]: [43-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE TABLE public.purchases (
+	    id bigint NOT NULL,
+	    amount bigint,
+	    order_id bigint,
+	    product_id bigint
+	);
+2024-03-17 05:19:04 GMT [62]: [44-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.764 ms
+2024-03-17 05:19:04 GMT [62]: [45-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.purchases OWNER TO postgres;
+2024-03-17 05:19:04 GMT [62]: [46-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.495 ms
+2024-03-17 05:19:04 GMT [62]: [47-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE TABLE public.roles (
+	    name character varying(255) NOT NULL
+	);
+2024-03-17 05:19:04 GMT [62]: [48-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.652 ms
+2024-03-17 05:19:04 GMT [62]: [49-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.roles OWNER TO postgres;
+2024-03-17 05:19:04 GMT [62]: [50-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.486 ms
+2024-03-17 05:19:04 GMT [62]: [51-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE TABLE public.users (
+	    login character varying(255) NOT NULL,
+	    first_name character varying(255),
+	    last_name character varying(255),
+	    password character varying(255)
+	);
+2024-03-17 05:19:04 GMT [62]: [52-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.170 ms
+2024-03-17 05:19:04 GMT [62]: [53-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.users OWNER TO postgres;
+2024-03-17 05:19:04 GMT [62]: [54-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.526 ms
+2024-03-17 05:19:04 GMT [62]: [55-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE TABLE public.users_roles (
+	    user_id character varying(255) NOT NULL,
+	    role_id character varying(255) NOT NULL
+	);
+2024-03-17 05:19:04 GMT [62]: [56-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.023 ms
+2024-03-17 05:19:04 GMT [62]: [57-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.users_roles OWNER TO postgres;
+2024-03-17 05:19:04 GMT [62]: [58-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.511 ms
+2024-03-17 05:19:04 GMT [62]: [59-1] db=postgres,user=postgres,app=psql LOG:  statement: COPY public.groups (id, name) FROM stdin;
+2024-03-17 05:19:04 GMT [62]: [60-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.709 ms
+2024-03-17 05:19:04 GMT [62]: [61-1] db=postgres,user=postgres,app=psql LOG:  statement: COPY public.groups_products (group_id, product_id) FROM stdin;
+2024-03-17 05:19:04 GMT [62]: [62-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.185 ms
+2024-03-17 05:19:04 GMT [62]: [63-1] db=postgres,user=postgres,app=psql LOG:  statement: COPY public.groups_relations (group_id, child_id) FROM stdin;
+2024-03-17 05:19:04 GMT [62]: [64-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.705 ms
+2024-03-17 05:19:04 GMT [62]: [65-1] db=postgres,user=postgres,app=psql LOG:  statement: COPY public.orders (id, date_of_purchase, user_login) FROM stdin;
+2024-03-17 05:19:04 GMT [62]: [66-1] db=postgres,user=postgres,app=psql LOG:  duration: 3.106 ms
+2024-03-17 05:19:04 GMT [62]: [67-1] db=postgres,user=postgres,app=psql LOG:  statement: COPY public.products (id, file_path, name, price) FROM stdin;
+2024-03-17 05:19:04 GMT [62]: [68-1] db=postgres,user=postgres,app=psql LOG:  duration: 3.010 ms
+2024-03-17 05:19:04 GMT [62]: [69-1] db=postgres,user=postgres,app=psql LOG:  statement: COPY public.purchases (id, amount, order_id, product_id) FROM stdin;
+2024-03-17 05:19:04 GMT [62]: [70-1] db=postgres,user=postgres,app=psql LOG:  duration: 5.755 ms
+2024-03-17 05:19:04 GMT [62]: [71-1] db=postgres,user=postgres,app=psql LOG:  statement: COPY public.roles (name) FROM stdin;
+2024-03-17 05:19:04 GMT [62]: [72-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.587 ms
+2024-03-17 05:19:04 GMT [62]: [73-1] db=postgres,user=postgres,app=psql LOG:  statement: COPY public.users (login, first_name, last_name, password) FROM stdin;
+2024-03-17 05:19:04 GMT [62]: [74-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.393 ms
+2024-03-17 05:19:04 GMT [62]: [75-1] db=postgres,user=postgres,app=psql LOG:  statement: COPY public.users_roles (user_id, role_id) FROM stdin;
+2024-03-17 05:19:04 GMT [62]: [76-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.185 ms
+2024-03-17 05:19:04 GMT [62]: [77-1] db=postgres,user=postgres,app=psql LOG:  statement: SELECT pg_catalog.setval('public.group_sequence', 36, true);
+2024-03-17 05:19:04 GMT [62]: [78-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.664 ms
+2024-03-17 05:19:04 GMT [62]: [79-1] db=postgres,user=postgres,app=psql LOG:  statement: SELECT pg_catalog.setval('public.order_sequence', 994, true);
+2024-03-17 05:19:04 GMT [62]: [80-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.558 ms
+2024-03-17 05:19:04 GMT [62]: [81-1] db=postgres,user=postgres,app=psql LOG:  statement: SELECT pg_catalog.setval('public.product_sequence', 2001, true);
+2024-03-17 05:19:04 GMT [62]: [82-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.553 ms
+2024-03-17 05:19:04 GMT [62]: [83-1] db=postgres,user=postgres,app=psql LOG:  statement: SELECT pg_catalog.setval('public.purchase_sequence', 5432, true);
+2024-03-17 05:19:04 GMT [62]: [84-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.575 ms
+2024-03-17 05:19:04 GMT [62]: [85-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.groups
+	    ADD CONSTRAINT groups_pkey PRIMARY KEY (id);
+2024-03-17 05:19:04 GMT [62]: [86-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.346 ms
+2024-03-17 05:19:04 GMT [62]: [87-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.groups_products
+	    ADD CONSTRAINT groups_products_pkey PRIMARY KEY (group_id, product_id);
+2024-03-17 05:19:04 GMT [62]: [88-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.196 ms
+2024-03-17 05:19:04 GMT [62]: [89-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.groups_relations
+	    ADD CONSTRAINT groups_relations_pkey PRIMARY KEY (group_id, child_id);
+2024-03-17 05:19:04 GMT [62]: [90-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.733 ms
+2024-03-17 05:19:04 GMT [62]: [91-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.orders
+	    ADD CONSTRAINT orders_pkey PRIMARY KEY (id);
+2024-03-17 05:19:04 GMT [62]: [92-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.972 ms
+2024-03-17 05:19:04 GMT [62]: [93-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.products
+	    ADD CONSTRAINT products_pkey PRIMARY KEY (id);
+2024-03-17 05:19:04 GMT [62]: [94-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.028 ms
+2024-03-17 05:19:04 GMT [62]: [95-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.purchases
+	    ADD CONSTRAINT purchases_pkey PRIMARY KEY (id);
+2024-03-17 05:19:04 GMT [62]: [96-1] db=postgres,user=postgres,app=psql LOG:  duration: 3.279 ms
+2024-03-17 05:19:04 GMT [62]: [97-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.roles
+	    ADD CONSTRAINT roles_pkey PRIMARY KEY (name);
+2024-03-17 05:19:04 GMT [62]: [98-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.022 ms
+2024-03-17 05:19:04 GMT [62]: [99-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.groups
+	    ADD CONSTRAINT uk_8mf0is8024pqmwjxgldfe54l7 UNIQUE (name);
+2024-03-17 05:19:04 GMT [62]: [100-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.905 ms
+2024-03-17 05:19:04 GMT [62]: [101-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.groups_relations
+	    ADD CONSTRAINT uk_agckqobouhwitsq0ia10g37uu UNIQUE (child_id);
+2024-03-17 05:19:04 GMT [62]: [102-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.909 ms
+2024-03-17 05:19:04 GMT [62]: [103-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.products
+	    ADD CONSTRAINT uk_o61fmio5yukmmiqgnxf8pnavn UNIQUE (name);
+2024-03-17 05:19:04 GMT [62]: [104-1] db=postgres,user=postgres,app=psql LOG:  duration: 3.429 ms
+2024-03-17 05:19:04 GMT [62]: [105-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.groups_products
+	    ADD CONSTRAINT uk_tk50mm3mvdrx38dlv0jbtp01v UNIQUE (product_id);
+2024-03-17 05:19:04 GMT [62]: [106-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.850 ms
+2024-03-17 05:19:04 GMT [62]: [107-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.users
+	    ADD CONSTRAINT users_pkey PRIMARY KEY (login);
+2024-03-17 05:19:04 GMT [62]: [108-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.345 ms
+2024-03-17 05:19:04 GMT [62]: [109-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.users_roles
+	    ADD CONSTRAINT users_roles_pkey PRIMARY KEY (user_id, role_id);
+2024-03-17 05:19:04 GMT [62]: [110-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.416 ms
+2024-03-17 05:19:04 GMT [62]: [111-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.users_roles
+	    ADD CONSTRAINT fk2o0jvgh89lemvvo17cbqvdxaa FOREIGN KEY (user_id) REFERENCES public.users(login);
+2024-03-17 05:19:04 GMT [62]: [112-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.107 ms
+2024-03-17 05:19:04 GMT [62]: [113-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.groups_relations
+	    ADD CONSTRAINT fk5k20ekc7xbb81oetinynyy6pq FOREIGN KEY (group_id) REFERENCES public.groups(id);
+2024-03-17 05:19:04 GMT [62]: [114-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.039 ms
+2024-03-17 05:19:04 GMT [62]: [115-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.groups_products
+	    ADD CONSTRAINT fk9ecxmmu3y6lxsbxghakiselre FOREIGN KEY (product_id) REFERENCES public.products(id);
+2024-03-17 05:19:04 GMT [62]: [116-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.474 ms
+2024-03-17 05:19:04 GMT [62]: [117-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.groups_products
+	    ADD CONSTRAINT fkaac0okfr0b29bnnne920o7d4k FOREIGN KEY (group_id) REFERENCES public.groups(id);
+2024-03-17 05:19:04 GMT [62]: [118-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.003 ms
+2024-03-17 05:19:04 GMT [62]: [119-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.purchases
+	    ADD CONSTRAINT fkcacbvw28fu31rv1vrhnkcbe28 FOREIGN KEY (product_id) REFERENCES public.products(id);
+2024-03-17 05:19:04 GMT [62]: [120-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.901 ms
+2024-03-17 05:19:04 GMT [62]: [121-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.groups_relations
+	    ADD CONSTRAINT fkek5u4gheaex9xlegham26yh92 FOREIGN KEY (child_id) REFERENCES public.groups(id);
+2024-03-17 05:19:04 GMT [62]: [122-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.827 ms
+2024-03-17 05:19:04 GMT [62]: [123-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.purchases
+	    ADD CONSTRAINT fkggo75366vlws6fp6684tmem1a FOREIGN KEY (order_id) REFERENCES public.orders(id);
+2024-03-17 05:19:04 GMT [62]: [124-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.463 ms
+2024-03-17 05:19:04 GMT [62]: [125-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.users_roles
+	    ADD CONSTRAINT fkj6m8fwv7oqv74fcehir1a9ffy FOREIGN KEY (role_id) REFERENCES public.roles(name);
+2024-03-17 05:19:04 GMT [62]: [126-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.881 ms
+2024-03-17 05:19:04 GMT [62]: [127-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.orders
+	    ADD CONSTRAINT fkqt1ft8tcj6cca719qs8cpgoci FOREIGN KEY (user_login) REFERENCES public.users(login);
+2024-03-17 05:19:04 GMT [62]: [128-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.955 ms
+2024-03-17 05:19:04 GMT [62]: [129-1] db=postgres,user=postgres,app=psql LOG:  disconnection: session time: 0:00:00.098 user=postgres database=postgres host=[local]
+2024-03-17 05:19:04 GMT [49]: [6-1] db=,user=,app= LOG:  received fast shutdown request
+2024-03-17 05:19:04 GMT [49]: [7-1] db=,user=,app= LOG:  aborting any active transactions
+2024-03-17 05:19:04 GMT [49]: [8-1] db=,user=,app= LOG:  background worker "logical replication launcher" (PID 57) exited with exit code 1
+2024-03-17 05:19:04 GMT [52]: [1-1] db=,user=,app= LOG:  shutting down
+2024-03-17 05:19:04 GMT [52]: [2-1] db=,user=,app= LOG:  checkpoint starting: shutdown immediate
+2024-03-17 05:19:04 GMT [52]: [3-1] db=,user=,app= LOG:  checkpoint complete: wrote 22 buffers (34.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.032 s, total=0.040 s; sync files=55, longest=0.002 s, average=0.001 s; distance=952 kB, estimate=952 kB
+2024-03-17 05:19:04 GMT [49]: [9-1] db=,user=,app= LOG:  database system is shut down
+2024-03-17 05:19:04 GMT [1]: [3-1] db=,user=,app= LOG:  starting PostgreSQL 13.8 (Debian 13.8-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+2024-03-17 05:19:04 GMT [1]: [4-1] db=,user=,app= LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2024-03-17 05:19:04 GMT [1]: [5-1] db=,user=,app= LOG:  listening on IPv6 address "::", port 5432
+2024-03-17 05:19:04 GMT [1]: [6-1] db=,user=,app= LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-03-17 05:19:04 GMT [65]: [1-1] db=,user=,app= LOG:  database system was shut down at 2024-03-17 05:19:04 GMT
+2024-03-17 05:19:04 GMT [1]: [7-1] db=,user=,app= LOG:  database system is ready to accept connections
+2024-03-17 05:24:04 GMT [66]: [1-1] db=,user=,app= LOG:  checkpoint starting: time
+2024-03-17 05:24:05 GMT [66]: [2-1] db=,user=,app= LOG:  checkpoint complete: wrote 6 buffers (9.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.602 s, sync=0.011 s, total=0.621 s; sync files=14, longest=0.010 s, average=0.001 s; distance=67 kB, estimate=67 kB
+2024-03-17 05:37:26 GMT [96]: [1-1] db=[unknown],user=[unknown],app=[unknown] LOG:  connection received: host=172.18.0.1 port=55154
+2024-03-17 05:37:26 GMT [96]: [2-1] db=postgres,user=postgres,app=[unknown] LOG:  connection authorized: user=postgres database=postgres
+2024-03-17 05:37:26 GMT [96]: [3-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.152 ms  parse <unnamed>: SET extra_float_digits = 3
+2024-03-17 05:37:26 GMT [96]: [4-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.007 ms  bind <unnamed>: SET extra_float_digits = 3
+2024-03-17 05:37:26 GMT [96]: [5-1] db=postgres,user=postgres,app=[unknown] LOG:  execute <unnamed>: SET extra_float_digits = 3
+2024-03-17 05:37:26 GMT [96]: [6-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.068 ms
+2024-03-17 05:37:26 GMT [96]: [7-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.015 ms  parse <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+2024-03-17 05:37:26 GMT [96]: [8-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.003 ms  bind <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+2024-03-17 05:37:26 GMT [96]: [9-1] db=postgres,user=postgres,app=[unknown] LOG:  execute <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+2024-03-17 05:37:26 GMT [96]: [10-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.042 ms
+2024-03-17 05:37:26 GMT [96]: [11-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.894 ms  parse <unnamed>: SELECT pg_type.oid, typname   FROM pg_catalog.pg_type   LEFT   JOIN (select ns.oid as nspoid, ns.nspname, r.r           from pg_namespace as ns           join ( select s.r, (current_schemas(false))[s.r] as nspname                    from generate_series(1, array_upper(current_schemas(false), 1)) as s(r) ) as r          using ( nspname )        ) as sp     ON sp.nspoid = typnamespace  WHERE typname = $1  ORDER BY sp.r, pg_type.oid DESC LIMIT 1
+2024-03-17 05:37:26 GMT [96]: [12-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.643 ms  bind <unnamed>: SELECT pg_type.oid, typname   FROM pg_catalog.pg_type   LEFT   JOIN (select ns.oid as nspoid, ns.nspname, r.r           from pg_namespace as ns           join ( select s.r, (current_schemas(false))[s.r] as nspname                    from generate_series(1, array_upper(current_schemas(false), 1)) as s(r) ) as r          using ( nspname )        ) as sp     ON sp.nspoid = typnamespace  WHERE typname = $1  ORDER BY sp.r, pg_type.oid DESC LIMIT 1
+2024-03-17 05:37:26 GMT [96]: [13-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver DETAIL:  parameters: $1 = 'box'
+2024-03-17 05:37:26 GMT [96]: [14-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  execute <unnamed>: SELECT pg_type.oid, typname   FROM pg_catalog.pg_type   LEFT   JOIN (select ns.oid as nspoid, ns.nspname, r.r           from pg_namespace as ns           join ( select s.r, (current_schemas(false))[s.r] as nspname                    from generate_series(1, array_upper(current_schemas(false), 1)) as s(r) ) as r          using ( nspname )        ) as sp     ON sp.nspoid = typnamespace  WHERE typname = $1  ORDER BY sp.r, pg_type.oid DESC LIMIT 1
+2024-03-17 05:37:26 GMT [96]: [15-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver DETAIL:  parameters: $1 = 'box'
+2024-03-17 05:37:26 GMT [96]: [16-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.090 ms
+2024-03-17 05:37:26 GMT [96]: [17-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.032 ms  parse <unnamed>: SET application_name = 'DBeaver 23.1.3 - Main <postgres>'
+2024-03-17 05:37:26 GMT [96]: [18-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.007 ms  bind <unnamed>: SET application_name = 'DBeaver 23.1.3 - Main <postgres>'
+2024-03-17 05:37:26 GMT [96]: [19-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  execute <unnamed>: SET application_name = 'DBeaver 23.1.3 - Main <postgres>'
+2024-03-17 05:37:26 GMT [96]: [20-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> LOG:  duration: 0.061 ms
+2024-03-17 05:37:26 GMT [96]: [21-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> LOG:  duration: 0.113 ms  parse <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:37:26 GMT [96]: [22-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> LOG:  duration: 0.026 ms  bind <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:37:26 GMT [96]: [23-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> LOG:  execute <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:37:26 GMT [96]: [24-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> LOG:  duration: 0.010 ms
+2024-03-17 05:37:26 GMT [96]: [25-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> LOG:  duration: 0.354 ms  parse <unnamed>: SELECT n.oid,n.*,d.description FROM pg_catalog.pg_namespace n
+	LEFT OUTER JOIN pg_catalog.pg_description d ON d.objoid=n.oid AND d.objsubid=0 AND d.classoid='pg_namespace'::regclass
+	 ORDER BY nspname
+2024-03-17 05:37:26 GMT [96]: [26-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> LOG:  duration: 0.344 ms  bind <unnamed>: SELECT n.oid,n.*,d.description FROM pg_catalog.pg_namespace n
+	LEFT OUTER JOIN pg_catalog.pg_description d ON d.objoid=n.oid AND d.objsubid=0 AND d.classoid='pg_namespace'::regclass
+	 ORDER BY nspname
+2024-03-17 05:37:26 GMT [96]: [27-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> LOG:  execute <unnamed>: SELECT n.oid,n.*,d.description FROM pg_catalog.pg_namespace n
+	LEFT OUTER JOIN pg_catalog.pg_description d ON d.objoid=n.oid AND d.objsubid=0 AND d.classoid='pg_namespace'::regclass
+	 ORDER BY nspname
+2024-03-17 05:37:26 GMT [96]: [28-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> LOG:  duration: 0.048 ms
+2024-03-17 05:37:26 GMT [96]: [29-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> LOG:  duration: 0.265 ms  parse <unnamed>: SELECT n.nspname = ANY(current_schemas(true)), n.nspname, t.typname FROM pg_catalog.pg_type t JOIN pg_catalog.pg_namespace n ON t.typnamespace = n.oid WHERE t.oid = $1
+2024-03-17 05:37:26 GMT [96]: [30-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> LOG:  duration: 0.180 ms  bind <unnamed>: SELECT n.nspname = ANY(current_schemas(true)), n.nspname, t.typname FROM pg_catalog.pg_type t JOIN pg_catalog.pg_namespace n ON t.typnamespace = n.oid WHERE t.oid = $1
+2024-03-17 05:37:26 GMT [96]: [31-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> DETAIL:  parameters: $1 = '1034'
+2024-03-17 05:37:26 GMT [96]: [32-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> LOG:  execute <unnamed>: SELECT n.nspname = ANY(current_schemas(true)), n.nspname, t.typname FROM pg_catalog.pg_type t JOIN pg_catalog.pg_namespace n ON t.typnamespace = n.oid WHERE t.oid = $1
+2024-03-17 05:37:26 GMT [96]: [33-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> DETAIL:  parameters: $1 = '1034'
+2024-03-17 05:37:26 GMT [96]: [34-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> LOG:  duration: 0.057 ms
+2024-03-17 05:37:26 GMT [96]: [35-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> LOG:  duration: 0.390 ms  parse <unnamed>: SELECT typinput='pg_catalog.array_in'::regproc as is_array, typtype, typname, pg_type.oid   FROM pg_catalog.pg_type   LEFT JOIN (select ns.oid as nspoid, ns.nspname, r.r           from pg_namespace as ns           join ( select s.r, (current_schemas(false))[s.r] as nspname                    from generate_series(1, array_upper(current_schemas(false), 1)) as s(r) ) as r          using ( nspname )        ) as sp     ON sp.nspoid = typnamespace  WHERE pg_type.oid = $1  ORDER BY sp.r, pg_type.oid DESC
+2024-03-17 05:37:26 GMT [96]: [36-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> LOG:  duration: 0.285 ms  bind <unnamed>: SELECT typinput='pg_catalog.array_in'::regproc as is_array, typtype, typname, pg_type.oid   FROM pg_catalog.pg_type   LEFT JOIN (select ns.oid as nspoid, ns.nspname, r.r           from pg_namespace as ns           join ( select s.r, (current_schemas(false))[s.r] as nspname                    from generate_series(1, array_upper(current_schemas(false), 1)) as s(r) ) as r          using ( nspname )        ) as sp     ON sp.nspoid = typnamespace  WHERE pg_type.oid = $1  ORDER BY sp.r, pg_type.oid DESC
+2024-03-17 05:37:26 GMT [96]: [37-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> DETAIL:  parameters: $1 = '1034'
+2024-03-17 05:37:26 GMT [96]: [38-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> LOG:  execute <unnamed>: SELECT typinput='pg_catalog.array_in'::regproc as is_array, typtype, typname, pg_type.oid   FROM pg_catalog.pg_type   LEFT JOIN (select ns.oid as nspoid, ns.nspname, r.r           from pg_namespace as ns           join ( select s.r, (current_schemas(false))[s.r] as nspname                    from generate_series(1, array_upper(current_schemas(false), 1)) as s(r) ) as r          using ( nspname )        ) as sp     ON sp.nspoid = typnamespace  WHERE pg_type.oid = $1  ORDER BY sp.r, pg_type.oid DESC
+2024-03-17 05:37:26 GMT [96]: [39-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> DETAIL:  parameters: $1 = '1034'
+2024-03-17 05:37:26 GMT [96]: [40-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> LOG:  duration: 0.071 ms
+2024-03-17 05:37:26 GMT [96]: [41-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> LOG:  duration: 0.030 ms  parse <unnamed>: SHOW search_path
+2024-03-17 05:37:26 GMT [96]: [42-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> LOG:  duration: 0.005 ms  bind <unnamed>: SHOW search_path
+2024-03-17 05:37:26 GMT [96]: [43-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> LOG:  execute <unnamed>: SHOW search_path
+2024-03-17 05:37:26 GMT [96]: [44-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Main <postgres> LOG:  duration: 0.047 ms
+2024-03-17 05:37:26 GMT [97]: [1-1] db=[unknown],user=[unknown],app=[unknown] LOG:  connection received: host=172.18.0.1 port=55156
+2024-03-17 05:37:26 GMT [97]: [2-1] db=postgres,user=postgres,app=[unknown] LOG:  connection authorized: user=postgres database=postgres
+2024-03-17 05:37:26 GMT [97]: [3-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.094 ms  parse <unnamed>: SET extra_float_digits = 3
+2024-03-17 05:37:26 GMT [97]: [4-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.007 ms  bind <unnamed>: SET extra_float_digits = 3
+2024-03-17 05:37:26 GMT [97]: [5-1] db=postgres,user=postgres,app=[unknown] LOG:  execute <unnamed>: SET extra_float_digits = 3
+2024-03-17 05:37:26 GMT [97]: [6-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.019 ms
+2024-03-17 05:37:26 GMT [97]: [7-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.012 ms  parse <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+2024-03-17 05:37:26 GMT [97]: [8-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.003 ms  bind <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+2024-03-17 05:37:26 GMT [97]: [9-1] db=postgres,user=postgres,app=[unknown] LOG:  execute <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+2024-03-17 05:37:26 GMT [97]: [10-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.015 ms
+2024-03-17 05:37:26 GMT [97]: [11-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.910 ms  parse <unnamed>: SELECT pg_type.oid, typname   FROM pg_catalog.pg_type   LEFT   JOIN (select ns.oid as nspoid, ns.nspname, r.r           from pg_namespace as ns           join ( select s.r, (current_schemas(false))[s.r] as nspname                    from generate_series(1, array_upper(current_schemas(false), 1)) as s(r) ) as r          using ( nspname )        ) as sp     ON sp.nspoid = typnamespace  WHERE typname = $1  ORDER BY sp.r, pg_type.oid DESC LIMIT 1
+2024-03-17 05:37:26 GMT [97]: [12-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.865 ms  bind <unnamed>: SELECT pg_type.oid, typname   FROM pg_catalog.pg_type   LEFT   JOIN (select ns.oid as nspoid, ns.nspname, r.r           from pg_namespace as ns           join ( select s.r, (current_schemas(false))[s.r] as nspname                    from generate_series(1, array_upper(current_schemas(false), 1)) as s(r) ) as r          using ( nspname )        ) as sp     ON sp.nspoid = typnamespace  WHERE typname = $1  ORDER BY sp.r, pg_type.oid DESC LIMIT 1
+2024-03-17 05:37:26 GMT [97]: [13-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver DETAIL:  parameters: $1 = 'box'
+2024-03-17 05:37:26 GMT [97]: [14-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  execute <unnamed>: SELECT pg_type.oid, typname   FROM pg_catalog.pg_type   LEFT   JOIN (select ns.oid as nspoid, ns.nspname, r.r           from pg_namespace as ns           join ( select s.r, (current_schemas(false))[s.r] as nspname                    from generate_series(1, array_upper(current_schemas(false), 1)) as s(r) ) as r          using ( nspname )        ) as sp     ON sp.nspoid = typnamespace  WHERE typname = $1  ORDER BY sp.r, pg_type.oid DESC LIMIT 1
+2024-03-17 05:37:26 GMT [97]: [15-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver DETAIL:  parameters: $1 = 'box'
+2024-03-17 05:37:26 GMT [97]: [16-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.103 ms
+2024-03-17 05:37:26 GMT [97]: [17-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.027 ms  parse <unnamed>: SET application_name = 'DBeaver 23.1.3 - Metadata <postgres>'
+2024-03-17 05:37:26 GMT [97]: [18-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.004 ms  bind <unnamed>: SET application_name = 'DBeaver 23.1.3 - Metadata <postgres>'
+2024-03-17 05:37:26 GMT [97]: [19-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  execute <unnamed>: SET application_name = 'DBeaver 23.1.3 - Metadata <postgres>'
+2024-03-17 05:37:26 GMT [97]: [20-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.077 ms
+2024-03-17 05:37:26 GMT [97]: [21-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.117 ms  parse <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:37:26 GMT [97]: [22-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.024 ms  bind <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:37:26 GMT [97]: [23-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  execute <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:37:26 GMT [97]: [24-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.010 ms
+2024-03-17 05:37:26 GMT [97]: [25-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.019 ms  parse <unnamed>: SHOW search_path
+2024-03-17 05:37:26 GMT [97]: [26-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.003 ms  bind <unnamed>: SHOW search_path
+2024-03-17 05:37:26 GMT [97]: [27-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  execute <unnamed>: SHOW search_path
+2024-03-17 05:37:26 GMT [97]: [28-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.011 ms
+2024-03-17 05:37:26 GMT [97]: [29-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.144 ms  parse <unnamed>: SELECT db.oid,db.* FROM pg_catalog.pg_database db WHERE datname=$1
+2024-03-17 05:37:26 GMT [97]: [30-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.216 ms  bind <unnamed>: SELECT db.oid,db.* FROM pg_catalog.pg_database db WHERE datname=$1
+2024-03-17 05:37:26 GMT [97]: [31-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> DETAIL:  parameters: $1 = 'postgres'
+2024-03-17 05:37:26 GMT [97]: [32-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  execute <unnamed>: SELECT db.oid,db.* FROM pg_catalog.pg_database db WHERE datname=$1
+2024-03-17 05:37:26 GMT [97]: [33-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> DETAIL:  parameters: $1 = 'postgres'
+2024-03-17 05:37:26 GMT [97]: [34-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.029 ms
+2024-03-17 05:37:26 GMT [97]: [35-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.278 ms  parse <unnamed>: select * from pg_catalog.pg_settings
+2024-03-17 05:37:26 GMT [97]: [36-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.080 ms  bind <unnamed>: select * from pg_catalog.pg_settings
+2024-03-17 05:37:26 GMT [97]: [37-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  execute <unnamed>: select * from pg_catalog.pg_settings
+2024-03-17 05:37:26 GMT [97]: [38-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 1.060 ms
+2024-03-17 05:37:26 GMT [97]: [39-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.372 ms  parse <unnamed>: select string_agg(word, ',') from pg_catalog.pg_get_keywords() where word <> ALL ('{a,abs,absolute,action,ada,add,admin,after,all,allocate,alter,always,and,any,are,array,as,asc,asensitive,assertion,assignment,asymmetric,at,atomic,attribute,attributes,authorization,avg,before,begin,bernoulli,between,bigint,binary,blob,boolean,both,breadth,by,c,call,called,cardinality,cascade,cascaded,case,cast,catalog,catalog_name,ceil,ceiling,chain,char,char_length,character,character_length,character_set_catalog,character_set_name,character_set_schema,characteristics,characters,check,checked,class_origin,clob,close,coalesce,cobol,code_units,collate,collation,collation_catalog,collation_name,collation_schema,collect,column,column_name,command_function,command_function_code,commit,committed,condition,condition_number,connect,connection_name,constraint,constraint_catalog,constraint_name,constraint_schema,constraints,constructors,contains,continue,convert,corr,corresponding,count,covar_pop,covar_samp,create,cross,cube,cume_dist,current,current_collation,current_date,current_default_transform_group,current_path,current_role,current_time,current_timestamp,current_transform_group_for_type,current_user,cursor,cursor_name,cycle,data,date,datetime_interval_code,datetime_interval_precision,day,deallocate,dec,decimal,declare,default,defaults,deferrable,deferred,defined,definer,degree,delete,dense_rank,depth,deref,derived,desc,describe,descriptor,deterministic,diagnostics,disconnect,dispatch,distinct,domain,double,drop,dynamic,dynamic_function,dynamic_function_code,each,element,else,end,end-exec,equals,escape,every,except,exception,exclude,excluding,exec,execute,exists,exp,external,extract,false,fetch,filter,final,first,float,floor,following,for,foreign,fortran,found,free,from,full,function,fusion,g,general,get,global,go,goto,grant,granted,group,grouping,having,hierarchy,hold,hour,identity,immediate,implementation,in,including,increment,indicator,initially,inner,inout,input,insensitive,insert,instance,instantiable,int,integer,intersect,intersection,interval,into,invoker,is,isolation,join,k,key,key_member,key_type,language,large,last,lateral,leading,left,length,level,like,ln,local,localtime,localtimestamp,locator,lower,m,map,match,matched,max,maxvalue,member,merge,message_length,message_octet_length,message_text,method,min,minute,minvalue,mod,modifies,module,month,more,multiset,mumps,name,names,national,natural,nchar,nclob,nesting,new,next,no,none,normalize,normalized,not,"null",nullable,nullif,nulls,number,numeric,object,octet_length,octets,of,old,on,only,open,option,options,or,order,ordering,ordinality,others,out,outer,output,over,overlaps,overlay,overriding,pad,parameter,parameter_mode,parameter_name,parameter_ordinal_position,parameter_specific_catalog,parameter_specific_name,parameter_specific_schema,partial,partition,pascal,path,percent_rank,percentile_cont,percentile_disc,placing,pli,position,power,preceding,precision,prepare,preserve,primary,prior,privileges,procedure,public,range,rank,read,reads,real,recursive,ref,references,referencing,regr_avgx,regr_avgy,regr_count,regr_intercept,regr_r2,regr_slope,regr_sxx,regr_sxy,regr_syy,relative,release,repeatable,restart,result,return,returned_cardinality,returned_length,returned_octet_length,returned_sqlstate,returns,revoke,right,role,rollback,rollup,routine,routine_catalog,routine_name,routine_schema,row,row_count,row_number,rows,savepoint,scale,schema,schema_name,scope_catalog,scope_name,scope_schema,scroll,search,second,section,security,select,self,sensitive,sequence,serializable,server_name,session,session_user,set,sets,similar,simple,size,smallint,some,source,space,specific,specific_name,specifictype,sql,sqlexception,sqlstate,sqlwarning,sqrt,start,state,statement,static,stddev_pop,stddev_samp,structure,style,subclass_origin,submultiset,substring,sum,symmetric,system,system_user,table,table_name,tablesample,temporary,then,ties,time,timestamp,timezone_hour,timezone_minute,to,top_level_count,trailing,transaction,transaction_active,transactions_committed,transactions_rolled_back,transform,transforms,translate,translation,treat,trigger,trigger_catalog,trigger_name,trigger_schema,trim,true,type,uescape,unbounded,uncommitted,under,union,unique,unknown,unnamed,unnest,update,upper,usage,user,user_defined_type_catalog,user_defined_type_code,user_defined_type_name,user_defined_type_schema,using,value,values,var_pop,var_samp,varchar,varying,view,when,whenever,where,width_bucket,window,with,within,without,work,write,year,zone}'::text[])
+2024-03-17 05:37:26 GMT [97]: [40-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.338 ms  bind <unnamed>: select string_agg(word, ',') from pg_catalog.pg_get_keywords() where word <> ALL ('{a,abs,absolute,action,ada,add,admin,after,all,allocate,alter,always,and,any,are,array,as,asc,asensitive,assertion,assignment,asymmetric,at,atomic,attribute,attributes,authorization,avg,before,begin,bernoulli,between,bigint,binary,blob,boolean,both,breadth,by,c,call,called,cardinality,cascade,cascaded,case,cast,catalog,catalog_name,ceil,ceiling,chain,char,char_length,character,character_length,character_set_catalog,character_set_name,character_set_schema,characteristics,characters,check,checked,class_origin,clob,close,coalesce,cobol,code_units,collate,collation,collation_catalog,collation_name,collation_schema,collect,column,column_name,command_function,command_function_code,commit,committed,condition,condition_number,connect,connection_name,constraint,constraint_catalog,constraint_name,constraint_schema,constraints,constructors,contains,continue,convert,corr,corresponding,count,covar_pop,covar_samp,create,cross,cube,cume_dist,current,current_collation,current_date,current_default_transform_group,current_path,current_role,current_time,current_timestamp,current_transform_group_for_type,current_user,cursor,cursor_name,cycle,data,date,datetime_interval_code,datetime_interval_precision,day,deallocate,dec,decimal,declare,default,defaults,deferrable,deferred,defined,definer,degree,delete,dense_rank,depth,deref,derived,desc,describe,descriptor,deterministic,diagnostics,disconnect,dispatch,distinct,domain,double,drop,dynamic,dynamic_function,dynamic_function_code,each,element,else,end,end-exec,equals,escape,every,except,exception,exclude,excluding,exec,execute,exists,exp,external,extract,false,fetch,filter,final,first,float,floor,following,for,foreign,fortran,found,free,from,full,function,fusion,g,general,get,global,go,goto,grant,granted,group,grouping,having,hierarchy,hold,hour,identity,immediate,implementation,in,including,increment,indicator,initially,inner,inout,input,insensitive,insert,instance,instantiable,int,integer,intersect,intersection,interval,into,invoker,is,isolation,join,k,key,key_member,key_type,language,large,last,lateral,leading,left,length,level,like,ln,local,localtime,localtimestamp,locator,lower,m,map,match,matched,max,maxvalue,member,merge,message_length,message_octet_length,message_text,method,min,minute,minvalue,mod,modifies,module,month,more,multiset,mumps,name,names,national,natural,nchar,nclob,nesting,new,next,no,none,normalize,normalized,not,"null",nullable,nullif,nulls,number,numeric,object,octet_length,octets,of,old,on,only,open,option,options,or,order,ordering,ordinality,others,out,outer,output,over,overlaps,overlay,overriding,pad,parameter,parameter_mode,parameter_name,parameter_ordinal_position,parameter_specific_catalog,parameter_specific_name,parameter_specific_schema,partial,partition,pascal,path,percent_rank,percentile_cont,percentile_disc,placing,pli,position,power,preceding,precision,prepare,preserve,primary,prior,privileges,procedure,public,range,rank,read,reads,real,recursive,ref,references,referencing,regr_avgx,regr_avgy,regr_count,regr_intercept,regr_r2,regr_slope,regr_sxx,regr_sxy,regr_syy,relative,release,repeatable,restart,result,return,returned_cardinality,returned_length,returned_octet_length,returned_sqlstate,returns,revoke,right,role,rollback,rollup,routine,routine_catalog,routine_name,routine_schema,row,row_count,row_number,rows,savepoint,scale,schema,schema_name,scope_catalog,scope_name,scope_schema,scroll,search,second,section,security,select,self,sensitive,sequence,serializable,server_name,session,session_user,set,sets,similar,simple,size,smallint,some,source,space,specific,specific_name,specifictype,sql,sqlexception,sqlstate,sqlwarning,sqrt,start,state,statement,static,stddev_pop,stddev_samp,structure,style,subclass_origin,submultiset,substring,sum,symmetric,system,system_user,table,table_name,tablesample,temporary,then,ties,time,timestamp,timezone_hour,timezone_minute,to,top_level_count,trailing,transaction,transaction_active,transactions_committed,transactions_rolled_back,transform,transforms,translate,translation,treat,trigger,trigger_catalog,trigger_name,trigger_schema,trim,true,type,uescape,unbounded,uncommitted,under,union,unique,unknown,unnamed,unnest,update,upper,usage,user,user_defined_type_catalog,user_defined_type_code,user_defined_type_name,user_defined_type_schema,using,value,values,var_pop,var_samp,varchar,varying,view,when,whenever,where,width_bucket,window,with,within,without,work,write,year,zone}'::text[])
+2024-03-17 05:37:26 GMT [97]: [41-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  execute <unnamed>: select string_agg(word, ',') from pg_catalog.pg_get_keywords() where word <> ALL ('{a,abs,absolute,action,ada,add,admin,after,all,allocate,alter,always,and,any,are,array,as,asc,asensitive,assertion,assignment,asymmetric,at,atomic,attribute,attributes,authorization,avg,before,begin,bernoulli,between,bigint,binary,blob,boolean,both,breadth,by,c,call,called,cardinality,cascade,cascaded,case,cast,catalog,catalog_name,ceil,ceiling,chain,char,char_length,character,character_length,character_set_catalog,character_set_name,character_set_schema,characteristics,characters,check,checked,class_origin,clob,close,coalesce,cobol,code_units,collate,collation,collation_catalog,collation_name,collation_schema,collect,column,column_name,command_function,command_function_code,commit,committed,condition,condition_number,connect,connection_name,constraint,constraint_catalog,constraint_name,constraint_schema,constraints,constructors,contains,continue,convert,corr,corresponding,count,covar_pop,covar_samp,create,cross,cube,cume_dist,current,current_collation,current_date,current_default_transform_group,current_path,current_role,current_time,current_timestamp,current_transform_group_for_type,current_user,cursor,cursor_name,cycle,data,date,datetime_interval_code,datetime_interval_precision,day,deallocate,dec,decimal,declare,default,defaults,deferrable,deferred,defined,definer,degree,delete,dense_rank,depth,deref,derived,desc,describe,descriptor,deterministic,diagnostics,disconnect,dispatch,distinct,domain,double,drop,dynamic,dynamic_function,dynamic_function_code,each,element,else,end,end-exec,equals,escape,every,except,exception,exclude,excluding,exec,execute,exists,exp,external,extract,false,fetch,filter,final,first,float,floor,following,for,foreign,fortran,found,free,from,full,function,fusion,g,general,get,global,go,goto,grant,granted,group,grouping,having,hierarchy,hold,hour,identity,immediate,implementation,in,including,increment,indicator,initially,inner,inout,input,insensitive,insert,instance,instantiable,int,integer,intersect,intersection,interval,into,invoker,is,isolation,join,k,key,key_member,key_type,language,large,last,lateral,leading,left,length,level,like,ln,local,localtime,localtimestamp,locator,lower,m,map,match,matched,max,maxvalue,member,merge,message_length,message_octet_length,message_text,method,min,minute,minvalue,mod,modifies,module,month,more,multiset,mumps,name,names,national,natural,nchar,nclob,nesting,new,next,no,none,normalize,normalized,not,"null",nullable,nullif,nulls,number,numeric,object,octet_length,octets,of,old,on,only,open,option,options,or,order,ordering,ordinality,others,out,outer,output,over,overlaps,overlay,overriding,pad,parameter,parameter_mode,parameter_name,parameter_ordinal_position,parameter_specific_catalog,parameter_specific_name,parameter_specific_schema,partial,partition,pascal,path,percent_rank,percentile_cont,percentile_disc,placing,pli,position,power,preceding,precision,prepare,preserve,primary,prior,privileges,procedure,public,range,rank,read,reads,real,recursive,ref,references,referencing,regr_avgx,regr_avgy,regr_count,regr_intercept,regr_r2,regr_slope,regr_sxx,regr_sxy,regr_syy,relative,release,repeatable,restart,result,return,returned_cardinality,returned_length,returned_octet_length,returned_sqlstate,returns,revoke,right,role,rollback,rollup,routine,routine_catalog,routine_name,routine_schema,row,row_count,row_number,rows,savepoint,scale,schema,schema_name,scope_catalog,scope_name,scope_schema,scroll,search,second,section,security,select,self,sensitive,sequence,serializable,server_name,session,session_user,set,sets,similar,simple,size,smallint,some,source,space,specific,specific_name,specifictype,sql,sqlexception,sqlstate,sqlwarning,sqrt,start,state,statement,static,stddev_pop,stddev_samp,structure,style,subclass_origin,submultiset,substring,sum,symmetric,system,system_user,table,table_name,tablesample,temporary,then,ties,time,timestamp,timezone_hour,timezone_minute,to,top_level_count,trailing,transaction,transaction_active,transactions_committed,transactions_rolled_back,transform,transforms,translate,translation,treat,trigger,trigger_catalog,trigger_name,trigger_schema,trim,true,type,uescape,unbounded,uncommitted,under,union,unique,unknown,unnamed,unnest,update,upper,usage,user,user_defined_type_catalog,user_defined_type_code,user_defined_type_name,user_defined_type_schema,using,value,values,var_pop,var_samp,varchar,varying,view,when,whenever,where,width_bucket,window,with,within,without,work,write,year,zone}'::text[])
+2024-03-17 05:37:26 GMT [97]: [42-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 2.307 ms
+2024-03-17 05:37:26 GMT [97]: [43-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.123 ms  parse <unnamed>: SELECT version()
+2024-03-17 05:37:26 GMT [97]: [44-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.028 ms  bind <unnamed>: SELECT version()
+2024-03-17 05:37:26 GMT [97]: [45-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  execute <unnamed>: SELECT version()
+2024-03-17 05:37:26 GMT [97]: [46-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.011 ms
+2024-03-17 05:37:26 GMT [97]: [47-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.380 ms  parse <unnamed>: SELECT t.oid,t.*,c.relkind,format_type(nullif(t.typbasetype, 0), t.typtypmod) as base_type_name, d.description
+	FROM pg_catalog.pg_type t
+	LEFT OUTER JOIN pg_catalog.pg_type et ON et.oid=t.typelem 
+	LEFT OUTER JOIN pg_catalog.pg_class c ON c.oid=t.typrelid
+	LEFT OUTER JOIN pg_catalog.pg_description d ON t.oid=d.objoid
+	WHERE t.typname IS NOT NULL
+	AND (c.relkind IS NULL OR c.relkind = 'c') AND (et.typcategory IS NULL OR et.typcategory <> 'C')
+2024-03-17 05:37:26 GMT [97]: [48-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.864 ms  bind <unnamed>: SELECT t.oid,t.*,c.relkind,format_type(nullif(t.typbasetype, 0), t.typtypmod) as base_type_name, d.description
+	FROM pg_catalog.pg_type t
+	LEFT OUTER JOIN pg_catalog.pg_type et ON et.oid=t.typelem 
+	LEFT OUTER JOIN pg_catalog.pg_class c ON c.oid=t.typrelid
+	LEFT OUTER JOIN pg_catalog.pg_description d ON t.oid=d.objoid
+	WHERE t.typname IS NOT NULL
+	AND (c.relkind IS NULL OR c.relkind = 'c') AND (et.typcategory IS NULL OR et.typcategory <> 'C')
+2024-03-17 05:37:26 GMT [97]: [49-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  execute <unnamed>: SELECT t.oid,t.*,c.relkind,format_type(nullif(t.typbasetype, 0), t.typtypmod) as base_type_name, d.description
+	FROM pg_catalog.pg_type t
+	LEFT OUTER JOIN pg_catalog.pg_type et ON et.oid=t.typelem 
+	LEFT OUTER JOIN pg_catalog.pg_class c ON c.oid=t.typrelid
+	LEFT OUTER JOIN pg_catalog.pg_description d ON t.oid=d.objoid
+	WHERE t.typname IS NOT NULL
+	AND (c.relkind IS NULL OR c.relkind = 'c') AND (et.typcategory IS NULL OR et.typcategory <> 'C')
+2024-03-17 05:37:26 GMT [97]: [50-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 4.696 ms
+2024-03-17 05:37:26 GMT [98]: [1-1] db=[unknown],user=[unknown],app=[unknown] LOG:  connection received: host=172.18.0.1 port=55158
+2024-03-17 05:37:26 GMT [98]: [2-1] db=postgres,user=postgres,app=[unknown] LOG:  connection authorized: user=postgres database=postgres
+2024-03-17 05:37:26 GMT [98]: [3-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.116 ms  parse <unnamed>: SET extra_float_digits = 3
+2024-03-17 05:37:26 GMT [98]: [4-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.011 ms  bind <unnamed>: SET extra_float_digits = 3
+2024-03-17 05:37:26 GMT [98]: [5-1] db=postgres,user=postgres,app=[unknown] LOG:  execute <unnamed>: SET extra_float_digits = 3
+2024-03-17 05:37:26 GMT [98]: [6-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.030 ms
+2024-03-17 05:37:26 GMT [98]: [7-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.035 ms  parse <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+2024-03-17 05:37:26 GMT [98]: [8-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.005 ms  bind <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+2024-03-17 05:37:26 GMT [98]: [9-1] db=postgres,user=postgres,app=[unknown] LOG:  execute <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+2024-03-17 05:37:26 GMT [98]: [10-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.027 ms
+2024-03-17 05:37:26 GMT [98]: [11-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 1.039 ms  parse <unnamed>: SELECT pg_type.oid, typname   FROM pg_catalog.pg_type   LEFT   JOIN (select ns.oid as nspoid, ns.nspname, r.r           from pg_namespace as ns           join ( select s.r, (current_schemas(false))[s.r] as nspname                    from generate_series(1, array_upper(current_schemas(false), 1)) as s(r) ) as r          using ( nspname )        ) as sp     ON sp.nspoid = typnamespace  WHERE typname = $1  ORDER BY sp.r, pg_type.oid DESC LIMIT 1
+2024-03-17 05:37:26 GMT [98]: [12-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.839 ms  bind <unnamed>: SELECT pg_type.oid, typname   FROM pg_catalog.pg_type   LEFT   JOIN (select ns.oid as nspoid, ns.nspname, r.r           from pg_namespace as ns           join ( select s.r, (current_schemas(false))[s.r] as nspname                    from generate_series(1, array_upper(current_schemas(false), 1)) as s(r) ) as r          using ( nspname )        ) as sp     ON sp.nspoid = typnamespace  WHERE typname = $1  ORDER BY sp.r, pg_type.oid DESC LIMIT 1
+2024-03-17 05:37:26 GMT [98]: [13-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver DETAIL:  parameters: $1 = 'box'
+2024-03-17 05:37:26 GMT [98]: [14-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  execute <unnamed>: SELECT pg_type.oid, typname   FROM pg_catalog.pg_type   LEFT   JOIN (select ns.oid as nspoid, ns.nspname, r.r           from pg_namespace as ns           join ( select s.r, (current_schemas(false))[s.r] as nspname                    from generate_series(1, array_upper(current_schemas(false), 1)) as s(r) ) as r          using ( nspname )        ) as sp     ON sp.nspoid = typnamespace  WHERE typname = $1  ORDER BY sp.r, pg_type.oid DESC LIMIT 1
+2024-03-17 05:37:26 GMT [98]: [15-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver DETAIL:  parameters: $1 = 'box'
+2024-03-17 05:37:26 GMT [98]: [16-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.119 ms
+2024-03-17 05:37:26 GMT [98]: [17-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.056 ms  parse <unnamed>: SET application_name = 'DBeaver 23.1.3 - SQLEditor <pgb.sql>'
+2024-03-17 05:37:26 GMT [98]: [18-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.005 ms  bind <unnamed>: SET application_name = 'DBeaver 23.1.3 - SQLEditor <pgb.sql>'
+2024-03-17 05:37:26 GMT [98]: [19-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  execute <unnamed>: SET application_name = 'DBeaver 23.1.3 - SQLEditor <pgb.sql>'
+2024-03-17 05:37:26 GMT [98]: [20-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  duration: 0.054 ms
+2024-03-17 05:37:26 GMT [98]: [21-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  duration: 0.093 ms  parse <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:37:26 GMT [98]: [22-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  duration: 0.032 ms  bind <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:37:26 GMT [98]: [23-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  execute <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:37:26 GMT [98]: [24-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  duration: 0.015 ms
+2024-03-17 05:37:26 GMT [98]: [25-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  duration: 0.033 ms  parse <unnamed>: SHOW search_path
+2024-03-17 05:37:26 GMT [98]: [26-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  duration: 0.101 ms  bind <unnamed>: SHOW search_path
+2024-03-17 05:37:26 GMT [98]: [27-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  execute <unnamed>: SHOW search_path
+2024-03-17 05:37:26 GMT [98]: [28-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  duration: 0.025 ms
+2024-03-17 05:37:26 GMT [98]: [29-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  duration: 0.044 ms  parse <unnamed>: SET search_path = public,public,"$user"
+2024-03-17 05:37:26 GMT [98]: [30-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  duration: 0.005 ms  bind <unnamed>: SET search_path = public,public,"$user"
+2024-03-17 05:37:26 GMT [98]: [31-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  execute <unnamed>: SET search_path = public,public,"$user"
+2024-03-17 05:37:26 GMT [98]: [32-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  duration: 0.060 ms
+2024-03-17 05:37:26 GMT [97]: [51-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.170 ms  parse <unnamed>: SELECT pet.*, d.description FROM pg_catalog.pg_event_trigger pet
+	LEFT OUTER JOIN pg_catalog.pg_description d ON pet."oid" = d.objoid WHERE pet.evtname = $1
+2024-03-17 05:37:26 GMT [97]: [52-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.237 ms  bind <unnamed>: SELECT pet.*, d.description FROM pg_catalog.pg_event_trigger pet
+	LEFT OUTER JOIN pg_catalog.pg_description d ON pet."oid" = d.objoid WHERE pet.evtname = $1
+2024-03-17 05:37:26 GMT [97]: [53-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> DETAIL:  parameters: $1 = 'postgres'
+2024-03-17 05:37:26 GMT [97]: [54-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  execute <unnamed>: SELECT pet.*, d.description FROM pg_catalog.pg_event_trigger pet
+	LEFT OUTER JOIN pg_catalog.pg_description d ON pet."oid" = d.objoid WHERE pet.evtname = $1
+2024-03-17 05:37:26 GMT [97]: [55-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> DETAIL:  parameters: $1 = 'postgres'
+2024-03-17 05:37:26 GMT [97]: [56-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - Metadata <postgres> LOG:  duration: 0.031 ms
+2024-03-17 05:37:26 GMT [99]: [1-1] db=[unknown],user=[unknown],app=[unknown] LOG:  connection received: host=172.18.0.1 port=55160
+2024-03-17 05:37:26 GMT [99]: [2-1] db=postgres,user=postgres,app=[unknown] LOG:  connection authorized: user=postgres database=postgres
+2024-03-17 05:37:26 GMT [99]: [3-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.142 ms  parse <unnamed>: SET extra_float_digits = 3
+2024-03-17 05:37:26 GMT [99]: [4-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.018 ms  bind <unnamed>: SET extra_float_digits = 3
+2024-03-17 05:37:26 GMT [99]: [5-1] db=postgres,user=postgres,app=[unknown] LOG:  execute <unnamed>: SET extra_float_digits = 3
+2024-03-17 05:37:26 GMT [99]: [6-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.048 ms
+2024-03-17 05:37:26 GMT [99]: [7-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.019 ms  parse <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+2024-03-17 05:37:26 GMT [99]: [8-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.003 ms  bind <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+2024-03-17 05:37:26 GMT [99]: [9-1] db=postgres,user=postgres,app=[unknown] LOG:  execute <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+2024-03-17 05:37:26 GMT [99]: [10-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.017 ms
+2024-03-17 05:37:26 GMT [99]: [11-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.875 ms  parse <unnamed>: SELECT pg_type.oid, typname   FROM pg_catalog.pg_type   LEFT   JOIN (select ns.oid as nspoid, ns.nspname, r.r           from pg_namespace as ns           join ( select s.r, (current_schemas(false))[s.r] as nspname                    from generate_series(1, array_upper(current_schemas(false), 1)) as s(r) ) as r          using ( nspname )        ) as sp     ON sp.nspoid = typnamespace  WHERE typname = $1  ORDER BY sp.r, pg_type.oid DESC LIMIT 1
+2024-03-17 05:37:26 GMT [99]: [12-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.613 ms  bind <unnamed>: SELECT pg_type.oid, typname   FROM pg_catalog.pg_type   LEFT   JOIN (select ns.oid as nspoid, ns.nspname, r.r           from pg_namespace as ns           join ( select s.r, (current_schemas(false))[s.r] as nspname                    from generate_series(1, array_upper(current_schemas(false), 1)) as s(r) ) as r          using ( nspname )        ) as sp     ON sp.nspoid = typnamespace  WHERE typname = $1  ORDER BY sp.r, pg_type.oid DESC LIMIT 1
+2024-03-17 05:37:26 GMT [99]: [13-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver DETAIL:  parameters: $1 = 'box'
+2024-03-17 05:37:26 GMT [99]: [14-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  execute <unnamed>: SELECT pg_type.oid, typname   FROM pg_catalog.pg_type   LEFT   JOIN (select ns.oid as nspoid, ns.nspname, r.r           from pg_namespace as ns           join ( select s.r, (current_schemas(false))[s.r] as nspname                    from generate_series(1, array_upper(current_schemas(false), 1)) as s(r) ) as r          using ( nspname )        ) as sp     ON sp.nspoid = typnamespace  WHERE typname = $1  ORDER BY sp.r, pg_type.oid DESC LIMIT 1
+2024-03-17 05:37:26 GMT [99]: [15-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver DETAIL:  parameters: $1 = 'box'
+2024-03-17 05:37:26 GMT [99]: [16-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.068 ms
+2024-03-17 05:37:26 GMT [99]: [17-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.022 ms  parse <unnamed>: SET application_name = 'DBeaver 23.1.3 - SQLEditor <Script-1.sql>'
+2024-03-17 05:37:26 GMT [99]: [18-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.004 ms  bind <unnamed>: SET application_name = 'DBeaver 23.1.3 - SQLEditor <Script-1.sql>'
+2024-03-17 05:37:26 GMT [99]: [19-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  execute <unnamed>: SET application_name = 'DBeaver 23.1.3 - SQLEditor <Script-1.sql>'
+2024-03-17 05:37:26 GMT [99]: [20-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.066 ms
+2024-03-17 05:37:26 GMT [99]: [21-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.111 ms  parse <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:37:26 GMT [99]: [22-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.047 ms  bind <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:37:26 GMT [99]: [23-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  execute <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:37:26 GMT [99]: [24-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.013 ms
+2024-03-17 05:37:26 GMT [99]: [25-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.016 ms  parse <unnamed>: SHOW search_path
+2024-03-17 05:37:26 GMT [99]: [26-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.005 ms  bind <unnamed>: SHOW search_path
+2024-03-17 05:37:26 GMT [99]: [27-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  execute <unnamed>: SHOW search_path
+2024-03-17 05:37:26 GMT [99]: [28-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.015 ms
+2024-03-17 05:37:26 GMT [99]: [29-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.014 ms  parse <unnamed>: SET search_path = public,public,"$user"
+2024-03-17 05:37:26 GMT [99]: [30-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.002 ms  bind <unnamed>: SET search_path = public,public,"$user"
+2024-03-17 05:37:26 GMT [99]: [31-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  execute <unnamed>: SET search_path = public,public,"$user"
+2024-03-17 05:37:26 GMT [99]: [32-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.016 ms
+2024-03-17 05:37:27 GMT [99]: [33-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.069 ms  parse <unnamed>: SHOW TRANSACTION ISOLATION LEVEL
+2024-03-17 05:37:27 GMT [99]: [34-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.007 ms  bind <unnamed>: SHOW TRANSACTION ISOLATION LEVEL
+2024-03-17 05:37:27 GMT [99]: [35-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  execute <unnamed>: SHOW TRANSACTION ISOLATION LEVEL
+2024-03-17 05:37:27 GMT [99]: [36-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.070 ms
+2024-03-17 05:37:34 GMT [99]: [37-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.406 ms  parse <unnamed>: SELECT pc.oid,pc.relname,pc.relnamespace,pc.relkind FROM pg_catalog.pg_class pc WHERE pc.relkind in('r','v','m','f','p') AND pc.relname ILIKE $1 AND pc.relnamespace IN ($2,$3) ORDER BY pc.relname LIMIT 10
+2024-03-17 05:37:34 GMT [99]: [38-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.304 ms  bind <unnamed>: SELECT pc.oid,pc.relname,pc.relnamespace,pc.relkind FROM pg_catalog.pg_class pc WHERE pc.relkind in('r','v','m','f','p') AND pc.relname ILIKE $1 AND pc.relnamespace IN ($2,$3) ORDER BY pc.relname LIMIT 10
+2024-03-17 05:37:34 GMT [99]: [39-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> DETAIL:  parameters: $1 = 'i', $2 = '2200', $3 = '11'
+2024-03-17 05:37:34 GMT [99]: [40-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  execute <unnamed>: SELECT pc.oid,pc.relname,pc.relnamespace,pc.relkind FROM pg_catalog.pg_class pc WHERE pc.relkind in('r','v','m','f','p') AND pc.relname ILIKE $1 AND pc.relnamespace IN ($2,$3) ORDER BY pc.relname LIMIT 10
+2024-03-17 05:37:34 GMT [99]: [41-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> DETAIL:  parameters: $1 = 'i', $2 = '2200', $3 = '11'
+2024-03-17 05:37:34 GMT [99]: [42-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.144 ms
+2024-03-17 05:37:34 GMT [99]: [43-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.130 ms  parse <unnamed>: SELECT pp.oid as poid, pp.* FROM pg_catalog.pg_proc pp WHERE pp.proname ILIKE $1 AND pp.pronamespace IN ($2,$3) ORDER BY pp.proname LIMIT 10
+2024-03-17 05:37:34 GMT [99]: [44-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.378 ms  bind <unnamed>: SELECT pp.oid as poid, pp.* FROM pg_catalog.pg_proc pp WHERE pp.proname ILIKE $1 AND pp.pronamespace IN ($2,$3) ORDER BY pp.proname LIMIT 10
+2024-03-17 05:37:34 GMT [99]: [45-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> DETAIL:  parameters: $1 = 'i', $2 = '2200', $3 = '11'
+2024-03-17 05:37:34 GMT [99]: [46-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  execute <unnamed>: SELECT pp.oid as poid, pp.* FROM pg_catalog.pg_proc pp WHERE pp.proname ILIKE $1 AND pp.pronamespace IN ($2,$3) ORDER BY pp.proname LIMIT 10
+2024-03-17 05:37:34 GMT [99]: [47-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> DETAIL:  parameters: $1 = 'i', $2 = '2200', $3 = '11'
+2024-03-17 05:37:34 GMT [99]: [48-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.687 ms
+2024-03-17 05:40:08 GMT [98]: [33-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  duration: 0.042 ms  parse <unnamed>: SHOW TRANSACTION ISOLATION LEVEL
+2024-03-17 05:40:08 GMT [98]: [34-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  duration: 0.005 ms  bind <unnamed>: SHOW TRANSACTION ISOLATION LEVEL
+2024-03-17 05:40:08 GMT [98]: [35-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  execute <unnamed>: SHOW TRANSACTION ISOLATION LEVEL
+2024-03-17 05:40:08 GMT [98]: [36-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  duration: 0.014 ms
+2024-03-17 05:41:41 GMT [104]: [1-1] db=[unknown],user=[unknown],app=[unknown] LOG:  connection received: host=172.18.0.1 port=55218
+2024-03-17 05:41:41 GMT [104]: [2-1] db=postgres,user=postgres,app=[unknown] LOG:  connection authorized: user=postgres database=postgres
+2024-03-17 05:41:41 GMT [104]: [3-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.102 ms  parse <unnamed>: SET extra_float_digits = 3
+2024-03-17 05:41:41 GMT [104]: [4-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.008 ms  bind <unnamed>: SET extra_float_digits = 3
+2024-03-17 05:41:41 GMT [104]: [5-1] db=postgres,user=postgres,app=[unknown] LOG:  execute <unnamed>: SET extra_float_digits = 3
+2024-03-17 05:41:41 GMT [104]: [6-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.028 ms
+2024-03-17 05:41:41 GMT [104]: [7-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.013 ms  parse <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+2024-03-17 05:41:41 GMT [104]: [8-1] db=postgres,user=postgres,app=[unknown] LOG:  duration: 0.004 ms  bind <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+2024-03-17 05:41:41 GMT [104]: [9-1] db=postgres,user=postgres,app=[unknown] LOG:  execute <unnamed>: SET application_name = 'PostgreSQL JDBC Driver'
+2024-03-17 05:41:41 GMT [104]: [10-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.017 ms
+2024-03-17 05:41:41 GMT [104]: [11-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 1.030 ms  parse <unnamed>: SELECT pg_type.oid, typname   FROM pg_catalog.pg_type   LEFT   JOIN (select ns.oid as nspoid, ns.nspname, r.r           from pg_namespace as ns           join ( select s.r, (current_schemas(false))[s.r] as nspname                    from generate_series(1, array_upper(current_schemas(false), 1)) as s(r) ) as r          using ( nspname )        ) as sp     ON sp.nspoid = typnamespace  WHERE typname = $1  ORDER BY sp.r, pg_type.oid DESC LIMIT 1
+2024-03-17 05:41:41 GMT [104]: [12-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.767 ms  bind <unnamed>: SELECT pg_type.oid, typname   FROM pg_catalog.pg_type   LEFT   JOIN (select ns.oid as nspoid, ns.nspname, r.r           from pg_namespace as ns           join ( select s.r, (current_schemas(false))[s.r] as nspname                    from generate_series(1, array_upper(current_schemas(false), 1)) as s(r) ) as r          using ( nspname )        ) as sp     ON sp.nspoid = typnamespace  WHERE typname = $1  ORDER BY sp.r, pg_type.oid DESC LIMIT 1
+2024-03-17 05:41:41 GMT [104]: [13-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver DETAIL:  parameters: $1 = 'box'
+2024-03-17 05:41:41 GMT [104]: [14-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  execute <unnamed>: SELECT pg_type.oid, typname   FROM pg_catalog.pg_type   LEFT   JOIN (select ns.oid as nspoid, ns.nspname, r.r           from pg_namespace as ns           join ( select s.r, (current_schemas(false))[s.r] as nspname                    from generate_series(1, array_upper(current_schemas(false), 1)) as s(r) ) as r          using ( nspname )        ) as sp     ON sp.nspoid = typnamespace  WHERE typname = $1  ORDER BY sp.r, pg_type.oid DESC LIMIT 1
+2024-03-17 05:41:41 GMT [104]: [15-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver DETAIL:  parameters: $1 = 'box'
+2024-03-17 05:41:41 GMT [104]: [16-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.089 ms
+2024-03-17 05:41:41 GMT [104]: [17-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.027 ms  parse <unnamed>: SET application_name = 'DBeaver 23.1.3 - SQLEditor <Script.sql>'
+2024-03-17 05:41:41 GMT [104]: [18-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  duration: 0.004 ms  bind <unnamed>: SET application_name = 'DBeaver 23.1.3 - SQLEditor <Script.sql>'
+2024-03-17 05:41:41 GMT [104]: [19-1] db=postgres,user=postgres,app=PostgreSQL JDBC Driver LOG:  execute <unnamed>: SET application_name = 'DBeaver 23.1.3 - SQLEditor <Script.sql>'
+2024-03-17 05:41:41 GMT [104]: [20-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.057 ms
+2024-03-17 05:41:41 GMT [104]: [21-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.094 ms  parse <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:41:41 GMT [104]: [22-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.038 ms  bind <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:41:41 GMT [104]: [23-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:41:41 GMT [104]: [24-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.011 ms
+2024-03-17 05:41:41 GMT [104]: [25-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.016 ms  parse <unnamed>: SHOW search_path
+2024-03-17 05:41:41 GMT [104]: [26-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.004 ms  bind <unnamed>: SHOW search_path
+2024-03-17 05:41:41 GMT [104]: [27-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SHOW search_path
+2024-03-17 05:41:41 GMT [104]: [28-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.011 ms
+2024-03-17 05:41:41 GMT [104]: [29-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.016 ms  parse <unnamed>: SET search_path = public,public,"$user"
+2024-03-17 05:41:41 GMT [104]: [30-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.003 ms  bind <unnamed>: SET search_path = public,public,"$user"
+2024-03-17 05:41:41 GMT [104]: [31-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SET search_path = public,public,"$user"
+2024-03-17 05:41:41 GMT [104]: [32-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.018 ms
+2024-03-17 05:41:41 GMT [104]: [33-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.037 ms  parse <unnamed>: SHOW TRANSACTION ISOLATION LEVEL
+2024-03-17 05:41:41 GMT [104]: [34-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.006 ms  bind <unnamed>: SHOW TRANSACTION ISOLATION LEVEL
+2024-03-17 05:41:41 GMT [104]: [35-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SHOW TRANSACTION ISOLATION LEVEL
+2024-03-17 05:41:41 GMT [104]: [36-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.018 ms
+2024-03-17 05:41:55 GMT [104]: [37-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.031 ms  parse <unnamed>: SET enable_bitmapscan = OFF
+2024-03-17 05:41:55 GMT [104]: [38-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.005 ms  bind <unnamed>: SET enable_bitmapscan = OFF
+2024-03-17 05:41:55 GMT [104]: [39-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SET enable_bitmapscan = OFF
+2024-03-17 05:41:55 GMT [104]: [40-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.062 ms
+2024-03-17 05:41:55 GMT [104]: [41-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.004 ms  parse <unnamed>: 
+	
+	SET enable_indexscan = on
+2024-03-17 05:41:55 GMT [104]: [42-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.002 ms  bind <unnamed>: 
+	
+	SET enable_indexscan = on
+2024-03-17 05:41:55 GMT [104]: [43-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: 
+	
+	SET enable_indexscan = on
+2024-03-17 05:41:55 GMT [104]: [44-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.011 ms
+2024-03-17 05:41:55 GMT [104]: [45-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.002 ms  parse <unnamed>: 
+	
+	SET enable_seqscan = off
+2024-03-17 05:41:55 GMT [104]: [46-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.002 ms  bind <unnamed>: 
+	
+	SET enable_seqscan = off
+2024-03-17 05:41:55 GMT [104]: [47-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: 
+	
+	SET enable_seqscan = off
+2024-03-17 05:41:55 GMT [104]: [48-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.009 ms
+2024-03-17 05:41:55 GMT [104]: [49-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.005 ms  parse <unnamed>: 
+	
+	SET max_parallel_workers_per_gather = 0
+2024-03-17 05:41:55 GMT [104]: [50-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.001 ms  bind <unnamed>: 
+	
+	SET max_parallel_workers_per_gather = 0
+2024-03-17 05:41:55 GMT [104]: [51-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: 
+	
+	SET max_parallel_workers_per_gather = 0
+2024-03-17 05:41:55 GMT [104]: [52-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.017 ms
+2024-03-17 05:41:55 GMT [104]: [53-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.273 ms  parse <unnamed>: 
+	
+	EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 05:41:55 GMT [104]: [54-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.008 ms  bind <unnamed>: 
+	
+	EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 05:41:55 GMT [104]: [55-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: 
+	
+	EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 05:41:55 GMT [104]: [56-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 221.332 ms
+2024-03-17 05:41:56 GMT [104]: [57-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.052 ms  parse <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:41:56 GMT [104]: [58-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.030 ms  bind <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:41:56 GMT [104]: [59-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:41:56 GMT [104]: [60-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.011 ms
+2024-03-17 05:41:56 GMT [104]: [61-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.021 ms  parse <unnamed>: SHOW search_path
+2024-03-17 05:41:56 GMT [104]: [62-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.025 ms  bind <unnamed>: SHOW search_path
+2024-03-17 05:41:56 GMT [104]: [63-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SHOW search_path
+2024-03-17 05:41:56 GMT [104]: [64-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.023 ms
+2024-03-17 05:42:17 GMT [104]: [65-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.073 ms  parse <unnamed>: CREATE INDEX pgb_product ON purchases (product_id)
+2024-03-17 05:42:17 GMT [104]: [66-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.007 ms  bind <unnamed>: CREATE INDEX pgb_product ON purchases (product_id)
+2024-03-17 05:42:17 GMT [104]: [67-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: CREATE INDEX pgb_product ON purchases (product_id)
+2024-03-17 05:42:17 GMT [104]: [68-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 12.111 ms
+2024-03-17 05:42:17 GMT [104]: [69-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.066 ms  parse <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:42:17 GMT [104]: [70-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.029 ms  bind <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:42:17 GMT [104]: [71-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:42:17 GMT [104]: [72-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.011 ms
+2024-03-17 05:42:17 GMT [104]: [73-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.015 ms  parse <unnamed>: SHOW search_path
+2024-03-17 05:42:17 GMT [104]: [74-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.002 ms  bind <unnamed>: SHOW search_path
+2024-03-17 05:42:17 GMT [104]: [75-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SHOW search_path
+2024-03-17 05:42:17 GMT [104]: [76-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.012 ms
+2024-03-17 05:42:21 GMT [104]: [77-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.027 ms  parse <unnamed>: SET enable_bitmapscan = OFF
+2024-03-17 05:42:21 GMT [104]: [78-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.006 ms  bind <unnamed>: SET enable_bitmapscan = OFF
+2024-03-17 05:42:21 GMT [104]: [79-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SET enable_bitmapscan = OFF
+2024-03-17 05:42:21 GMT [104]: [80-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.015 ms
+2024-03-17 05:42:21 GMT [104]: [81-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.005 ms  parse <unnamed>: 
+	
+	SET enable_indexscan = on
+2024-03-17 05:42:21 GMT [104]: [82-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.003 ms  bind <unnamed>: 
+	
+	SET enable_indexscan = on
+2024-03-17 05:42:21 GMT [104]: [83-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: 
+	
+	SET enable_indexscan = on
+2024-03-17 05:42:21 GMT [104]: [84-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.004 ms
+2024-03-17 05:42:21 GMT [104]: [85-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.002 ms  parse <unnamed>: 
+	
+	SET enable_seqscan = off
+2024-03-17 05:42:21 GMT [104]: [86-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.001 ms  bind <unnamed>: 
+	
+	SET enable_seqscan = off
+2024-03-17 05:42:21 GMT [104]: [87-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: 
+	
+	SET enable_seqscan = off
+2024-03-17 05:42:21 GMT [104]: [88-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.003 ms
+2024-03-17 05:42:21 GMT [104]: [89-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.004 ms  parse <unnamed>: 
+	
+	SET max_parallel_workers_per_gather = 0
+2024-03-17 05:42:21 GMT [104]: [90-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.001 ms  bind <unnamed>: 
+	
+	SET max_parallel_workers_per_gather = 0
+2024-03-17 05:42:21 GMT [104]: [91-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: 
+	
+	SET max_parallel_workers_per_gather = 0
+2024-03-17 05:42:21 GMT [104]: [92-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.005 ms
+2024-03-17 05:42:21 GMT [104]: [93-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.099 ms  parse <unnamed>: 
+	
+	EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 05:42:21 GMT [104]: [94-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.005 ms  bind <unnamed>: 
+	
+	EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 05:42:21 GMT [104]: [95-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: 
+	
+	EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 05:42:21 GMT [104]: [96-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.629 ms
+2024-03-17 05:42:21 GMT [104]: [97-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.095 ms  parse <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:42:21 GMT [104]: [98-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.034 ms  bind <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:42:21 GMT [104]: [99-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:42:21 GMT [104]: [100-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.013 ms
+2024-03-17 05:42:21 GMT [104]: [101-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.031 ms  parse <unnamed>: SHOW search_path
+2024-03-17 05:42:21 GMT [104]: [102-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.005 ms  bind <unnamed>: SHOW search_path
+2024-03-17 05:42:21 GMT [104]: [103-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SHOW search_path
+2024-03-17 05:42:21 GMT [104]: [104-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.021 ms
+2024-03-17 05:42:32 GMT [104]: [105-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.060 ms  parse <unnamed>: SET enable_bitmapscan = OFF
+2024-03-17 05:42:32 GMT [104]: [106-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.005 ms  bind <unnamed>: SET enable_bitmapscan = OFF
+2024-03-17 05:42:32 GMT [104]: [107-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SET enable_bitmapscan = OFF
+2024-03-17 05:42:32 GMT [104]: [108-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.016 ms
+2024-03-17 05:42:32 GMT [104]: [109-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.004 ms  parse <unnamed>: 
+	
+	SET enable_indexscan = on
+2024-03-17 05:42:32 GMT [104]: [110-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.003 ms  bind <unnamed>: 
+	
+	SET enable_indexscan = on
+2024-03-17 05:42:32 GMT [104]: [111-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: 
+	
+	SET enable_indexscan = on
+2024-03-17 05:42:32 GMT [104]: [112-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.004 ms
+2024-03-17 05:42:32 GMT [104]: [113-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.002 ms  parse <unnamed>: 
+	
+	SET enable_seqscan = off
+2024-03-17 05:42:32 GMT [104]: [114-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.002 ms  bind <unnamed>: 
+	
+	SET enable_seqscan = off
+2024-03-17 05:42:32 GMT [104]: [115-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: 
+	
+	SET enable_seqscan = off
+2024-03-17 05:42:32 GMT [104]: [116-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.007 ms
+2024-03-17 05:42:32 GMT [104]: [117-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.007 ms  parse <unnamed>: 
+	
+	SET max_parallel_workers_per_gather = 0
+2024-03-17 05:42:32 GMT [104]: [118-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.002 ms  bind <unnamed>: 
+	
+	SET max_parallel_workers_per_gather = 0
+2024-03-17 05:42:32 GMT [104]: [119-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: 
+	
+	SET max_parallel_workers_per_gather = 0
+2024-03-17 05:42:32 GMT [104]: [120-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.006 ms
+2024-03-17 05:42:32 GMT [104]: [121-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.060 ms  parse <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:42:32 GMT [104]: [122-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.038 ms  bind <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:42:32 GMT [104]: [123-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:42:32 GMT [104]: [124-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.011 ms
+2024-03-17 05:42:32 GMT [104]: [125-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.034 ms  parse <unnamed>: SHOW search_path
+2024-03-17 05:42:32 GMT [104]: [126-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.005 ms  bind <unnamed>: SHOW search_path
+2024-03-17 05:42:32 GMT [104]: [127-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SHOW search_path
+2024-03-17 05:42:32 GMT [104]: [128-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.017 ms
+2024-03-17 05:42:36 GMT [104]: [129-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.103 ms  parse <unnamed>: EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 05:42:36 GMT [104]: [130-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.007 ms  bind <unnamed>: EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 05:42:36 GMT [104]: [131-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 05:42:36 GMT [104]: [132-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.332 ms
+2024-03-17 05:42:36 GMT [104]: [133-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.077 ms  parse <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:42:36 GMT [104]: [134-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.027 ms  bind <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:42:36 GMT [104]: [135-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:42:36 GMT [104]: [136-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.013 ms
+2024-03-17 05:42:36 GMT [104]: [137-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.017 ms  parse <unnamed>: SHOW search_path
+2024-03-17 05:42:36 GMT [104]: [138-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.003 ms  bind <unnamed>: SHOW search_path
+2024-03-17 05:42:36 GMT [104]: [139-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SHOW search_path
+2024-03-17 05:42:36 GMT [104]: [140-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.013 ms
+2024-03-17 05:43:00 GMT [104]: [141-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.045 ms  parse <unnamed>: SET enable_indexscan = off
+2024-03-17 05:43:00 GMT [104]: [142-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.006 ms  bind <unnamed>: SET enable_indexscan = off
+2024-03-17 05:43:00 GMT [104]: [143-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SET enable_indexscan = off
+2024-03-17 05:43:00 GMT [104]: [144-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.062 ms
+2024-03-17 05:43:00 GMT [104]: [145-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.072 ms  parse <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:43:00 GMT [104]: [146-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.026 ms  bind <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:43:00 GMT [104]: [147-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:43:00 GMT [104]: [148-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.011 ms
+2024-03-17 05:43:00 GMT [104]: [149-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.025 ms  parse <unnamed>: SHOW search_path
+2024-03-17 05:43:00 GMT [104]: [150-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.003 ms  bind <unnamed>: SHOW search_path
+2024-03-17 05:43:00 GMT [104]: [151-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SHOW search_path
+2024-03-17 05:43:00 GMT [104]: [152-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.015 ms
+2024-03-17 05:43:03 GMT [104]: [153-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.035 ms  parse <unnamed>: SET enable_seqscan = on
+2024-03-17 05:43:03 GMT [104]: [154-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.005 ms  bind <unnamed>: SET enable_seqscan = on
+2024-03-17 05:43:03 GMT [104]: [155-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SET enable_seqscan = on
+2024-03-17 05:43:03 GMT [104]: [156-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.054 ms
+2024-03-17 05:43:03 GMT [104]: [157-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.055 ms  parse <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:43:03 GMT [104]: [158-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.032 ms  bind <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:43:03 GMT [104]: [159-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:43:03 GMT [104]: [160-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.011 ms
+2024-03-17 05:43:03 GMT [104]: [161-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.021 ms  parse <unnamed>: SHOW search_path
+2024-03-17 05:43:03 GMT [104]: [162-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.005 ms  bind <unnamed>: SHOW search_path
+2024-03-17 05:43:03 GMT [104]: [163-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SHOW search_path
+2024-03-17 05:43:03 GMT [104]: [164-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.014 ms
+2024-03-17 05:43:05 GMT [104]: [165-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.067 ms  parse <unnamed>: EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 05:43:05 GMT [104]: [166-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.008 ms  bind <unnamed>: EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 05:43:05 GMT [104]: [167-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 05:43:05 GMT [104]: [168-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.692 ms
+2024-03-17 05:43:06 GMT [104]: [169-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.065 ms  parse <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:43:06 GMT [104]: [170-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.026 ms  bind <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:43:06 GMT [104]: [171-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:43:06 GMT [104]: [172-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.011 ms
+2024-03-17 05:43:06 GMT [104]: [173-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.020 ms  parse <unnamed>: SHOW search_path
+2024-03-17 05:43:06 GMT [104]: [174-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.004 ms  bind <unnamed>: SHOW search_path
+2024-03-17 05:43:06 GMT [104]: [175-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SHOW search_path
+2024-03-17 05:43:06 GMT [104]: [176-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.016 ms
+2024-03-17 05:43:18 GMT [99]: [49-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.036 ms  parse <unnamed>: DO $$
+	BEGIN
+	    FOR i IN 5433..1000000 LOOP
+	        INSERT INTO purchases (id, amount, order_id, product_id)
+	        VALUES (i,
+	                TRUNC(RANDOM() * 3 + 1), -- случайное значение для amount от 1 до 4
+	                TRUNC(RANDOM() * 993 + 1), -- случайное значение для order_id от 1 до 994
+	                TRUNC(RANDOM() * 998 + 1002)); -- случайное значение для product_id от 1002 до 2000
+	    END LOOP;
+	    COMMIT;
+	END;
+	$$
+2024-03-17 05:43:18 GMT [99]: [50-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.004 ms  bind <unnamed>: DO $$
+	BEGIN
+	    FOR i IN 5433..1000000 LOOP
+	        INSERT INTO purchases (id, amount, order_id, product_id)
+	        VALUES (i,
+	                TRUNC(RANDOM() * 3 + 1), -- случайное значение для amount от 1 до 4
+	                TRUNC(RANDOM() * 993 + 1), -- случайное значение для order_id от 1 до 994
+	                TRUNC(RANDOM() * 998 + 1002)); -- случайное значение для product_id от 1002 до 2000
+	    END LOOP;
+	    COMMIT;
+	END;
+	$$
+2024-03-17 05:43:18 GMT [99]: [51-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  execute <unnamed>: DO $$
+	BEGIN
+	    FOR i IN 5433..1000000 LOOP
+	        INSERT INTO purchases (id, amount, order_id, product_id)
+	        VALUES (i,
+	                TRUNC(RANDOM() * 3 + 1), -- случайное значение для amount от 1 до 4
+	                TRUNC(RANDOM() * 993 + 1), -- случайное значение для order_id от 1 до 994
+	                TRUNC(RANDOM() * 998 + 1002)); -- случайное значение для product_id от 1002 до 2000
+	    END LOOP;
+	    COMMIT;
+	END;
+	$$
+2024-03-17 05:43:57 GMT [99]: [52-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 39064.783 ms
+2024-03-17 05:43:57 GMT [99]: [53-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.046 ms  parse <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:43:57 GMT [99]: [54-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.024 ms  bind <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:43:57 GMT [99]: [55-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  execute <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:43:57 GMT [99]: [56-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.009 ms
+2024-03-17 05:43:57 GMT [99]: [57-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.022 ms  parse <unnamed>: SHOW search_path
+2024-03-17 05:43:57 GMT [99]: [58-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.005 ms  bind <unnamed>: SHOW search_path
+2024-03-17 05:43:57 GMT [99]: [59-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  execute <unnamed>: SHOW search_path
+2024-03-17 05:43:57 GMT [99]: [60-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script-1.sql> LOG:  duration: 0.012 ms
+2024-03-17 05:44:04 GMT [66]: [3-1] db=,user=,app= LOG:  checkpoint starting: time
+2024-03-17 05:44:07 GMT [66]: [4-1] db=,user=,app= LOG:  checkpoint complete: wrote 15 buffers (23.4%); 0 WAL file(s) added, 0 removed, 13 recycled; write=2.133 s, sync=0.585 s, total=2.775 s; sync files=23, longest=0.412 s, average=0.026 s; distance=217988 kB, estimate=217988 kB
+2024-03-17 05:44:11 GMT [104]: [177-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.180 ms  parse <unnamed>: EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 05:44:11 GMT [104]: [178-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.007 ms  bind <unnamed>: EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 05:44:11 GMT [104]: [179-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 05:44:12 GMT [104]: [180-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 82.816 ms
+2024-03-17 05:44:12 GMT [104]: [181-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.074 ms  parse <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:44:12 GMT [104]: [182-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.028 ms  bind <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:44:12 GMT [104]: [183-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:44:12 GMT [104]: [184-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.012 ms
+2024-03-17 05:44:12 GMT [104]: [185-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.020 ms  parse <unnamed>: SHOW search_path
+2024-03-17 05:44:12 GMT [104]: [186-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.004 ms  bind <unnamed>: SHOW search_path
+2024-03-17 05:44:12 GMT [104]: [187-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SHOW search_path
+2024-03-17 05:44:12 GMT [104]: [188-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.014 ms
+2024-03-17 05:44:24 GMT [104]: [189-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.076 ms  parse <unnamed>: SET enable_indexscan = on
+2024-03-17 05:44:24 GMT [104]: [190-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.005 ms  bind <unnamed>: SET enable_indexscan = on
+2024-03-17 05:44:24 GMT [104]: [191-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SET enable_indexscan = on
+2024-03-17 05:44:24 GMT [104]: [192-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.042 ms
+2024-03-17 05:44:24 GMT [104]: [193-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.005 ms  parse <unnamed>: 
+	
+	SET enable_seqscan = off
+2024-03-17 05:44:24 GMT [104]: [194-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.003 ms  bind <unnamed>: 
+	
+	SET enable_seqscan = off
+2024-03-17 05:44:24 GMT [104]: [195-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: 
+	
+	SET enable_seqscan = off
+2024-03-17 05:44:24 GMT [104]: [196-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.004 ms
+2024-03-17 05:44:24 GMT [104]: [197-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.060 ms  parse <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:44:24 GMT [104]: [198-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.028 ms  bind <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:44:24 GMT [104]: [199-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:44:24 GMT [104]: [200-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.010 ms
+2024-03-17 05:44:24 GMT [104]: [201-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.032 ms  parse <unnamed>: SHOW search_path
+2024-03-17 05:44:24 GMT [104]: [202-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.004 ms  bind <unnamed>: SHOW search_path
+2024-03-17 05:44:24 GMT [104]: [203-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SHOW search_path
+2024-03-17 05:44:24 GMT [104]: [204-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.014 ms
+2024-03-17 05:44:24 GMT [104]: [205-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.429 ms  parse <unnamed>: SELECT pc.oid,pc.relname,pc.relnamespace,pc.relkind FROM pg_catalog.pg_class pc WHERE pc.relkind in('r','v','m','f','p') AND pc.relname ILIKE $1 AND pc.relnamespace IN ($2,$3) ORDER BY pc.relname LIMIT 10
+2024-03-17 05:44:24 GMT [104]: [206-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.425 ms  bind <unnamed>: SELECT pc.oid,pc.relname,pc.relnamespace,pc.relkind FROM pg_catalog.pg_class pc WHERE pc.relkind in('r','v','m','f','p') AND pc.relname ILIKE $1 AND pc.relnamespace IN ($2,$3) ORDER BY pc.relname LIMIT 10
+2024-03-17 05:44:24 GMT [104]: [207-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> DETAIL:  parameters: $1 = 'enable_seqscan', $2 = '2200', $3 = '11'
+2024-03-17 05:44:24 GMT [104]: [208-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT pc.oid,pc.relname,pc.relnamespace,pc.relkind FROM pg_catalog.pg_class pc WHERE pc.relkind in('r','v','m','f','p') AND pc.relname ILIKE $1 AND pc.relnamespace IN ($2,$3) ORDER BY pc.relname LIMIT 10
+2024-03-17 05:44:24 GMT [104]: [209-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> DETAIL:  parameters: $1 = 'enable_seqscan', $2 = '2200', $3 = '11'
+2024-03-17 05:44:24 GMT [104]: [210-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.635 ms
+2024-03-17 05:44:24 GMT [104]: [211-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.115 ms  parse <unnamed>: SELECT pp.oid as poid, pp.* FROM pg_catalog.pg_proc pp WHERE pp.proname ILIKE $1 AND pp.pronamespace IN ($2,$3) ORDER BY pp.proname LIMIT 10
+2024-03-17 05:44:24 GMT [104]: [212-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.315 ms  bind <unnamed>: SELECT pp.oid as poid, pp.* FROM pg_catalog.pg_proc pp WHERE pp.proname ILIKE $1 AND pp.pronamespace IN ($2,$3) ORDER BY pp.proname LIMIT 10
+2024-03-17 05:44:24 GMT [104]: [213-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> DETAIL:  parameters: $1 = 'enable_seqscan', $2 = '2200', $3 = '11'
+2024-03-17 05:44:24 GMT [104]: [214-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT pp.oid as poid, pp.* FROM pg_catalog.pg_proc pp WHERE pp.proname ILIKE $1 AND pp.pronamespace IN ($2,$3) ORDER BY pp.proname LIMIT 10
+2024-03-17 05:44:24 GMT [104]: [215-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> DETAIL:  parameters: $1 = 'enable_seqscan', $2 = '2200', $3 = '11'
+2024-03-17 05:44:24 GMT [104]: [216-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 1.333 ms
+2024-03-17 05:44:24 GMT [104]: [217-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.126 ms  parse <unnamed>: SELECT pc.oid,pc.relname,pc.relnamespace,pc.relkind FROM pg_catalog.pg_class pc WHERE pc.relkind in('r','v','m','f','p') AND pc.relname ILIKE $1 AND pc.relnamespace IN ($2,$3) ORDER BY pc.relname LIMIT 10
+2024-03-17 05:44:24 GMT [104]: [218-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.130 ms  bind <unnamed>: SELECT pc.oid,pc.relname,pc.relnamespace,pc.relkind FROM pg_catalog.pg_class pc WHERE pc.relkind in('r','v','m','f','p') AND pc.relname ILIKE $1 AND pc.relnamespace IN ($2,$3) ORDER BY pc.relname LIMIT 10
+2024-03-17 05:44:24 GMT [104]: [219-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> DETAIL:  parameters: $1 = 'max_parallel_workers_per_gather', $2 = '2200', $3 = '11'
+2024-03-17 05:44:24 GMT [104]: [220-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT pc.oid,pc.relname,pc.relnamespace,pc.relkind FROM pg_catalog.pg_class pc WHERE pc.relkind in('r','v','m','f','p') AND pc.relname ILIKE $1 AND pc.relnamespace IN ($2,$3) ORDER BY pc.relname LIMIT 10
+2024-03-17 05:44:24 GMT [104]: [221-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> DETAIL:  parameters: $1 = 'max_parallel_workers_per_gather', $2 = '2200', $3 = '11'
+2024-03-17 05:44:24 GMT [104]: [222-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.268 ms
+2024-03-17 05:44:24 GMT [104]: [223-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.058 ms  parse <unnamed>: SELECT pp.oid as poid, pp.* FROM pg_catalog.pg_proc pp WHERE pp.proname ILIKE $1 AND pp.pronamespace IN ($2,$3) ORDER BY pp.proname LIMIT 10
+2024-03-17 05:44:24 GMT [104]: [224-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.143 ms  bind <unnamed>: SELECT pp.oid as poid, pp.* FROM pg_catalog.pg_proc pp WHERE pp.proname ILIKE $1 AND pp.pronamespace IN ($2,$3) ORDER BY pp.proname LIMIT 10
+2024-03-17 05:44:24 GMT [104]: [225-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> DETAIL:  parameters: $1 = 'max_parallel_workers_per_gather', $2 = '2200', $3 = '11'
+2024-03-17 05:44:24 GMT [104]: [226-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT pp.oid as poid, pp.* FROM pg_catalog.pg_proc pp WHERE pp.proname ILIKE $1 AND pp.pronamespace IN ($2,$3) ORDER BY pp.proname LIMIT 10
+2024-03-17 05:44:24 GMT [104]: [227-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> DETAIL:  parameters: $1 = 'max_parallel_workers_per_gather', $2 = '2200', $3 = '11'
+2024-03-17 05:44:24 GMT [104]: [228-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 1.383 ms
+2024-03-17 05:44:27 GMT [104]: [229-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.071 ms  parse <unnamed>: EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 05:44:27 GMT [104]: [230-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.013 ms  bind <unnamed>: EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 05:44:27 GMT [104]: [231-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 05:44:27 GMT [104]: [232-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 38.646 ms
+2024-03-17 05:44:28 GMT [104]: [233-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.116 ms  parse <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:44:28 GMT [104]: [234-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.025 ms  bind <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:44:28 GMT [104]: [235-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT current_schema(),session_user
+2024-03-17 05:44:28 GMT [104]: [236-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.011 ms
+2024-03-17 05:44:28 GMT [104]: [237-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.038 ms  parse <unnamed>: SHOW search_path
+2024-03-17 05:44:28 GMT [104]: [238-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.004 ms  bind <unnamed>: SHOW search_path
+2024-03-17 05:44:28 GMT [104]: [239-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SHOW search_path
+2024-03-17 05:44:28 GMT [104]: [240-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.013 ms
+2024-03-17 05:44:42 GMT [104]: [241-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.140 ms  parse <unnamed>: SELECT pc.oid,pc.relname,pc.relnamespace,pc.relkind FROM pg_catalog.pg_class pc WHERE pc.relkind in('r','v','m','f','p') AND pc.relname ILIKE $1 AND pc.relnamespace IN ($2,$3) ORDER BY pc.relname LIMIT 10
+2024-03-17 05:44:42 GMT [104]: [242-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.139 ms  bind <unnamed>: SELECT pc.oid,pc.relname,pc.relnamespace,pc.relkind FROM pg_catalog.pg_class pc WHERE pc.relkind in('r','v','m','f','p') AND pc.relname ILIKE $1 AND pc.relnamespace IN ($2,$3) ORDER BY pc.relname LIMIT 10
+2024-03-17 05:44:42 GMT [104]: [243-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> DETAIL:  parameters: $1 = 'enable_indexscan', $2 = '2200', $3 = '11'
+2024-03-17 05:44:42 GMT [104]: [244-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT pc.oid,pc.relname,pc.relnamespace,pc.relkind FROM pg_catalog.pg_class pc WHERE pc.relkind in('r','v','m','f','p') AND pc.relname ILIKE $1 AND pc.relnamespace IN ($2,$3) ORDER BY pc.relname LIMIT 10
+2024-03-17 05:44:42 GMT [104]: [245-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> DETAIL:  parameters: $1 = 'enable_indexscan', $2 = '2200', $3 = '11'
+2024-03-17 05:44:42 GMT [104]: [246-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.237 ms
+2024-03-17 05:44:42 GMT [104]: [247-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.128 ms  parse <unnamed>: SELECT pp.oid as poid, pp.* FROM pg_catalog.pg_proc pp WHERE pp.proname ILIKE $1 AND pp.pronamespace IN ($2,$3) ORDER BY pp.proname LIMIT 10
+2024-03-17 05:44:42 GMT [104]: [248-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.140 ms  bind <unnamed>: SELECT pp.oid as poid, pp.* FROM pg_catalog.pg_proc pp WHERE pp.proname ILIKE $1 AND pp.pronamespace IN ($2,$3) ORDER BY pp.proname LIMIT 10
+2024-03-17 05:44:42 GMT [104]: [249-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> DETAIL:  parameters: $1 = 'enable_indexscan', $2 = '2200', $3 = '11'
+2024-03-17 05:44:42 GMT [104]: [250-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT pp.oid as poid, pp.* FROM pg_catalog.pg_proc pp WHERE pp.proname ILIKE $1 AND pp.pronamespace IN ($2,$3) ORDER BY pp.proname LIMIT 10
+2024-03-17 05:44:42 GMT [104]: [251-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> DETAIL:  parameters: $1 = 'enable_indexscan', $2 = '2200', $3 = '11'
+2024-03-17 05:44:42 GMT [104]: [252-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 1.507 ms
+2024-03-17 05:46:45 GMT [104]: [253-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.151 ms  parse <unnamed>: SELECT pc.oid,pc.relname,pc.relnamespace,pc.relkind FROM pg_catalog.pg_class pc WHERE pc.relkind in('r','v','m','f','p') AND pc.relname ILIKE $1 AND pc.relnamespace IN ($2,$3) ORDER BY pc.relname LIMIT 10
+2024-03-17 05:46:45 GMT [104]: [254-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.159 ms  bind <unnamed>: SELECT pc.oid,pc.relname,pc.relnamespace,pc.relkind FROM pg_catalog.pg_class pc WHERE pc.relkind in('r','v','m','f','p') AND pc.relname ILIKE $1 AND pc.relnamespace IN ($2,$3) ORDER BY pc.relname LIMIT 10
+2024-03-17 05:46:45 GMT [104]: [255-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> DETAIL:  parameters: $1 = 'enable_bitmapscan', $2 = '2200', $3 = '11'
+2024-03-17 05:46:45 GMT [104]: [256-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT pc.oid,pc.relname,pc.relnamespace,pc.relkind FROM pg_catalog.pg_class pc WHERE pc.relkind in('r','v','m','f','p') AND pc.relname ILIKE $1 AND pc.relnamespace IN ($2,$3) ORDER BY pc.relname LIMIT 10
+2024-03-17 05:46:45 GMT [104]: [257-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> DETAIL:  parameters: $1 = 'enable_bitmapscan', $2 = '2200', $3 = '11'
+2024-03-17 05:46:45 GMT [104]: [258-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.332 ms
+2024-03-17 05:46:45 GMT [104]: [259-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.119 ms  parse <unnamed>: SELECT pp.oid as poid, pp.* FROM pg_catalog.pg_proc pp WHERE pp.proname ILIKE $1 AND pp.pronamespace IN ($2,$3) ORDER BY pp.proname LIMIT 10
+2024-03-17 05:46:45 GMT [104]: [260-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.141 ms  bind <unnamed>: SELECT pp.oid as poid, pp.* FROM pg_catalog.pg_proc pp WHERE pp.proname ILIKE $1 AND pp.pronamespace IN ($2,$3) ORDER BY pp.proname LIMIT 10
+2024-03-17 05:46:45 GMT [104]: [261-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> DETAIL:  parameters: $1 = 'enable_bitmapscan', $2 = '2200', $3 = '11'
+2024-03-17 05:46:45 GMT [104]: [262-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT pp.oid as poid, pp.* FROM pg_catalog.pg_proc pp WHERE pp.proname ILIKE $1 AND pp.pronamespace IN ($2,$3) ORDER BY pp.proname LIMIT 10
+2024-03-17 05:46:45 GMT [104]: [263-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> DETAIL:  parameters: $1 = 'enable_bitmapscan', $2 = '2200', $3 = '11'
+2024-03-17 05:46:45 GMT [104]: [264-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 1.327 ms
+2024-03-17 05:49:04 GMT [66]: [5-1] db=,user=,app= LOG:  checkpoint starting: time
+2024-03-17 05:49:04 GMT [66]: [6-1] db=,user=,app= LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.003 s, total=0.011 s; sync files=7, longest=0.001 s, average=0.001 s; distance=500 kB, estimate=196239 kB
+2024-03-17 05:59:33 GMT [98]: [37-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  duration: 0.364 ms  parse <unnamed>: SELECT pc.oid,pc.relname,pc.relnamespace,pc.relkind FROM pg_catalog.pg_class pc WHERE pc.relkind in('r','v','m','f','p') AND pc.relname ILIKE $1 AND pc.relnamespace IN ($2,$3) ORDER BY pc.relname LIMIT 10
+2024-03-17 05:59:33 GMT [98]: [38-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  duration: 0.323 ms  bind <unnamed>: SELECT pc.oid,pc.relname,pc.relnamespace,pc.relkind FROM pg_catalog.pg_class pc WHERE pc.relkind in('r','v','m','f','p') AND pc.relname ILIKE $1 AND pc.relnamespace IN ($2,$3) ORDER BY pc.relname LIMIT 10
+2024-03-17 05:59:33 GMT [98]: [39-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> DETAIL:  parameters: $1 = 'product_id', $2 = '2200', $3 = '11'
+2024-03-17 05:59:33 GMT [98]: [40-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  execute <unnamed>: SELECT pc.oid,pc.relname,pc.relnamespace,pc.relkind FROM pg_catalog.pg_class pc WHERE pc.relkind in('r','v','m','f','p') AND pc.relname ILIKE $1 AND pc.relnamespace IN ($2,$3) ORDER BY pc.relname LIMIT 10
+2024-03-17 05:59:33 GMT [98]: [41-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> DETAIL:  parameters: $1 = 'product_id', $2 = '2200', $3 = '11'
+2024-03-17 05:59:33 GMT [98]: [42-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  duration: 0.213 ms
+2024-03-17 05:59:33 GMT [98]: [43-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  duration: 0.122 ms  parse <unnamed>: SELECT pp.oid as poid, pp.* FROM pg_catalog.pg_proc pp WHERE pp.proname ILIKE $1 AND pp.pronamespace IN ($2,$3) ORDER BY pp.proname LIMIT 10
+2024-03-17 05:59:33 GMT [98]: [44-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  duration: 0.461 ms  bind <unnamed>: SELECT pp.oid as poid, pp.* FROM pg_catalog.pg_proc pp WHERE pp.proname ILIKE $1 AND pp.pronamespace IN ($2,$3) ORDER BY pp.proname LIMIT 10
+2024-03-17 05:59:33 GMT [98]: [45-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> DETAIL:  parameters: $1 = 'product_id', $2 = '2200', $3 = '11'
+2024-03-17 05:59:33 GMT [98]: [46-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  execute <unnamed>: SELECT pp.oid as poid, pp.* FROM pg_catalog.pg_proc pp WHERE pp.proname ILIKE $1 AND pp.pronamespace IN ($2,$3) ORDER BY pp.proname LIMIT 10
+2024-03-17 05:59:33 GMT [98]: [47-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> DETAIL:  parameters: $1 = 'product_id', $2 = '2200', $3 = '11'
+2024-03-17 05:59:33 GMT [98]: [48-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <pgb.sql> LOG:  duration: 1.040 ms
+2024-03-17 06:12:11 GMT [104]: [265-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.100 ms  parse <unnamed>: EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 06:12:11 GMT [104]: [266-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.009 ms  bind <unnamed>: EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 06:12:11 GMT [104]: [267-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 06:12:11 GMT [104]: [268-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 42.150 ms
+2024-03-17 06:12:11 GMT [104]: [269-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.054 ms  parse <unnamed>: SELECT current_schema(),session_user
+2024-03-17 06:12:11 GMT [104]: [270-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.042 ms  bind <unnamed>: SELECT current_schema(),session_user
+2024-03-17 06:12:11 GMT [104]: [271-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT current_schema(),session_user
+2024-03-17 06:12:11 GMT [104]: [272-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.019 ms
+2024-03-17 06:12:11 GMT [104]: [273-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.014 ms  parse <unnamed>: SHOW search_path
+2024-03-17 06:12:11 GMT [104]: [274-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.003 ms  bind <unnamed>: SHOW search_path
+2024-03-17 06:12:11 GMT [104]: [275-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SHOW search_path
+2024-03-17 06:12:11 GMT [104]: [276-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.023 ms
+2024-03-17 06:12:20 GMT [104]: [277-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.029 ms  parse <unnamed>: SET max_parallel_workers_per_gather = 2
+2024-03-17 06:12:20 GMT [104]: [278-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.005 ms  bind <unnamed>: SET max_parallel_workers_per_gather = 2
+2024-03-17 06:12:20 GMT [104]: [279-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SET max_parallel_workers_per_gather = 2
+2024-03-17 06:12:20 GMT [104]: [280-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.063 ms
+2024-03-17 06:12:20 GMT [104]: [281-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.079 ms  parse <unnamed>: SELECT current_schema(),session_user
+2024-03-17 06:12:20 GMT [104]: [282-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.026 ms  bind <unnamed>: SELECT current_schema(),session_user
+2024-03-17 06:12:20 GMT [104]: [283-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT current_schema(),session_user
+2024-03-17 06:12:20 GMT [104]: [284-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.010 ms
+2024-03-17 06:12:20 GMT [104]: [285-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.048 ms  parse <unnamed>: SHOW search_path
+2024-03-17 06:12:20 GMT [104]: [286-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.005 ms  bind <unnamed>: SHOW search_path
+2024-03-17 06:12:20 GMT [104]: [287-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SHOW search_path
+2024-03-17 06:12:20 GMT [104]: [288-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.015 ms
+2024-03-17 06:12:23 GMT [104]: [289-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.068 ms  parse <unnamed>: EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 06:12:23 GMT [104]: [290-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.008 ms  bind <unnamed>: EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 06:12:23 GMT [104]: [291-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: EXPLAIN analyze SELECT product_id FROM purchases WHERE product_id < 1520
+2024-03-17 06:12:23 GMT [104]: [292-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 38.530 ms
+2024-03-17 06:12:24 GMT [104]: [293-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.086 ms  parse <unnamed>: SELECT current_schema(),session_user
+2024-03-17 06:12:24 GMT [104]: [294-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.041 ms  bind <unnamed>: SELECT current_schema(),session_user
+2024-03-17 06:12:24 GMT [104]: [295-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SELECT current_schema(),session_user
+2024-03-17 06:12:24 GMT [104]: [296-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.014 ms
+2024-03-17 06:12:24 GMT [104]: [297-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.023 ms  parse <unnamed>: SHOW search_path
+2024-03-17 06:12:24 GMT [104]: [298-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.005 ms  bind <unnamed>: SHOW search_path
+2024-03-17 06:12:24 GMT [104]: [299-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  execute <unnamed>: SHOW search_path
+2024-03-17 06:12:24 GMT [104]: [300-1] db=postgres,user=postgres,app=DBeaver 23.1.3 - SQLEditor <Script.sql> LOG:  duration: 0.056 ms

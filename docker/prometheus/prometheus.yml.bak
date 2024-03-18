@@ -1,0 +1,19 @@
+scrape_configs:
+- job_name: minio-job
+  bearer_token: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ4MTI5NDA3NzQsImlzcyI6InByb21ldGhldXMiLCJzdWIiOiJ0ZXN0In0.puHpHV0cmg_Du76l82yu8DdSgV9SZU9ClOM6InZV3VSY_xWFHJjoDtxvebbog_FiUQungLwP1ud4w26J0ftSrw
+  metrics_path: /minio/v2/metrics/cluster
+  scheme: http
+  static_configs:
+  - targets: ['myminio:9000']
+- job_name: 'spring_services'         # The job name is assigned to scraped metrics by default.
+  metrics_path: '/photo-api/actuator/prometheus'  # The HTTP resource path on which to fetch metrics from targets.
+  scrape_interval: 5s                   # How frequently to scrape targets from this job.
+  static_configs:                       # A static_config allows specifying a list of targets and a common label set for them
+    - targets: ['photo-api:8082', 'products-api:8083']
+  relabel_configs:
+    - source_labels: [__address__]
+      regex: (.*):(.*)
+      target_label: __metrics_path__
+      replacement: $1/actuator/prometheus
+global:
+    scrape_interval: 10s # How frequently to scrape targets by default

@@ -1,0 +1,220 @@
+2024-03-13 17:13:06 GMT [49]: [3-1] db=,user=,app= LOG:  starting PostgreSQL 13.8 (Debian 13.8-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+2024-03-13 17:13:06 GMT [49]: [4-1] db=,user=,app= LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-03-13 17:13:06 GMT [51]: [1-1] db=,user=,app= LOG:  database system was shut down at 2024-03-13 17:13:06 GMT
+2024-03-13 17:13:06 GMT [49]: [5-1] db=,user=,app= LOG:  database system is ready to accept connections
+2024-03-13 17:13:06 GMT [60]: [1-1] db=[unknown],user=[unknown],app=[unknown] LOG:  connection received: host=[local]
+2024-03-13 17:13:06 GMT [60]: [2-1] db=postgres,user=postgres,app=[unknown] LOG:  connection authorized: user=postgres database=postgres application_name=psql
+2024-03-13 17:13:06 GMT [60]: [3-1] db=postgres,user=postgres,app=psql LOG:  statement: SELECT 1 FROM pg_database WHERE datname = 'postgres' ;
+2024-03-13 17:13:06 GMT [60]: [4-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.600 ms
+2024-03-13 17:13:06 GMT [60]: [5-1] db=postgres,user=postgres,app=psql LOG:  disconnection: session time: 0:00:00.004 user=postgres database=postgres host=[local]
+2024-03-13 17:13:06 GMT [62]: [1-1] db=[unknown],user=[unknown],app=[unknown] LOG:  connection received: host=[local]
+2024-03-13 17:13:06 GMT [62]: [2-1] db=postgres,user=postgres,app=[unknown] LOG:  connection authorized: user=postgres database=postgres application_name=psql
+2024-03-13 17:13:07 GMT [62]: [3-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE SEQUENCE public.group_sequence
+	    START WITH 1
+	    INCREMENT BY 1
+	    NO MINVALUE
+	    NO MAXVALUE
+	    CACHE 1;
+2024-03-13 17:13:07 GMT [62]: [4-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.537 ms
+2024-03-13 17:13:07 GMT [62]: [5-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.group_sequence OWNER TO postgres;
+2024-03-13 17:13:07 GMT [62]: [6-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.590 ms
+2024-03-13 17:13:07 GMT [62]: [7-1] db=postgres,user=postgres,app=psql LOG:  statement: SET default_tablespace = '';
+2024-03-13 17:13:07 GMT [62]: [8-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.054 ms
+2024-03-13 17:13:07 GMT [62]: [9-1] db=postgres,user=postgres,app=psql LOG:  statement: SET default_table_access_method = heap;
+2024-03-13 17:13:07 GMT [62]: [10-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.093 ms
+2024-03-13 17:13:07 GMT [62]: [11-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE TABLE public.groups (
+	    id bigint NOT NULL,
+	    name character varying(255)
+	);
+2024-03-13 17:13:07 GMT [62]: [12-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.828 ms
+2024-03-13 17:13:07 GMT [62]: [13-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.groups OWNER TO postgres;
+2024-03-13 17:13:07 GMT [62]: [14-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.478 ms
+2024-03-13 17:13:07 GMT [62]: [15-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE TABLE public.groups_products (
+	    group_id bigint NOT NULL,
+	    product_id bigint NOT NULL
+	);
+2024-03-13 17:13:07 GMT [62]: [16-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.716 ms
+2024-03-13 17:13:07 GMT [62]: [17-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.groups_products OWNER TO postgres;
+2024-03-13 17:13:07 GMT [62]: [18-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.529 ms
+2024-03-13 17:13:07 GMT [62]: [19-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE TABLE public.groups_relations (
+	    group_id bigint NOT NULL,
+	    child_id bigint NOT NULL
+	);
+2024-03-13 17:13:07 GMT [62]: [20-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.632 ms
+2024-03-13 17:13:07 GMT [62]: [21-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.groups_relations OWNER TO postgres;
+2024-03-13 17:13:07 GMT [62]: [22-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.579 ms
+2024-03-13 17:13:07 GMT [62]: [23-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE SEQUENCE public.order_sequence
+	    START WITH 1
+	    INCREMENT BY 1
+	    NO MINVALUE
+	    NO MAXVALUE
+	    CACHE 1;
+2024-03-13 17:13:07 GMT [62]: [24-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.617 ms
+2024-03-13 17:13:07 GMT [62]: [25-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.order_sequence OWNER TO postgres;
+2024-03-13 17:13:07 GMT [62]: [26-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.453 ms
+2024-03-13 17:13:07 GMT [62]: [27-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE TABLE public.orders (
+	    id bigint NOT NULL,
+	    date_of_purchase timestamp without time zone,
+	    user_login character varying(255)
+	);
+2024-03-13 17:13:07 GMT [62]: [28-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.634 ms
+2024-03-13 17:13:07 GMT [62]: [29-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.orders OWNER TO postgres;
+2024-03-13 17:13:07 GMT [62]: [30-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.491 ms
+2024-03-13 17:13:07 GMT [62]: [31-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE SEQUENCE public.product_sequence
+	    START WITH 1
+	    INCREMENT BY 1
+	    NO MINVALUE
+	    NO MAXVALUE
+	    CACHE 1;
+2024-03-13 17:13:07 GMT [62]: [32-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.755 ms
+2024-03-13 17:13:07 GMT [62]: [33-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.product_sequence OWNER TO postgres;
+2024-03-13 17:13:07 GMT [62]: [34-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.507 ms
+2024-03-13 17:13:07 GMT [62]: [35-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE TABLE public.products (
+	    id bigint NOT NULL,
+	    file_path character varying(255),
+	    name character varying(255),
+	    price integer NOT NULL
+	);
+2024-03-13 17:13:07 GMT [62]: [36-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.444 ms
+2024-03-13 17:13:07 GMT [62]: [37-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.products OWNER TO postgres;
+2024-03-13 17:13:07 GMT [62]: [38-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.507 ms
+2024-03-13 17:13:07 GMT [62]: [39-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE SEQUENCE public.purchase_sequence
+	    START WITH 1
+	    INCREMENT BY 1
+	    NO MINVALUE
+	    NO MAXVALUE
+	    CACHE 1;
+2024-03-13 17:13:07 GMT [62]: [40-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.693 ms
+2024-03-13 17:13:07 GMT [62]: [41-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.purchase_sequence OWNER TO postgres;
+2024-03-13 17:13:07 GMT [62]: [42-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.475 ms
+2024-03-13 17:13:07 GMT [62]: [43-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE TABLE public.purchases (
+	    id bigint NOT NULL,
+	    amount bigint,
+	    order_id bigint,
+	    product_id bigint
+	);
+2024-03-13 17:13:07 GMT [62]: [44-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.704 ms
+2024-03-13 17:13:07 GMT [62]: [45-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.purchases OWNER TO postgres;
+2024-03-13 17:13:07 GMT [62]: [46-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.493 ms
+2024-03-13 17:13:07 GMT [62]: [47-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE TABLE public.roles (
+	    name character varying(255) NOT NULL
+	);
+2024-03-13 17:13:07 GMT [62]: [48-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.614 ms
+2024-03-13 17:13:07 GMT [62]: [49-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.roles OWNER TO postgres;
+2024-03-13 17:13:07 GMT [62]: [50-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.453 ms
+2024-03-13 17:13:07 GMT [62]: [51-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE TABLE public.users (
+	    login character varying(255) NOT NULL,
+	    first_name character varying(255),
+	    last_name character varying(255),
+	    password character varying(255)
+	);
+2024-03-13 17:13:07 GMT [62]: [52-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.066 ms
+2024-03-13 17:13:07 GMT [62]: [53-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.users OWNER TO postgres;
+2024-03-13 17:13:07 GMT [62]: [54-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.528 ms
+2024-03-13 17:13:07 GMT [62]: [55-1] db=postgres,user=postgres,app=psql LOG:  statement: CREATE TABLE public.users_roles (
+	    user_id character varying(255) NOT NULL,
+	    role_id character varying(255) NOT NULL
+	);
+2024-03-13 17:13:07 GMT [62]: [56-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.974 ms
+2024-03-13 17:13:07 GMT [62]: [57-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE public.users_roles OWNER TO postgres;
+2024-03-13 17:13:07 GMT [62]: [58-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.494 ms
+2024-03-13 17:13:07 GMT [62]: [59-1] db=postgres,user=postgres,app=psql LOG:  statement: COPY public.groups (id, name) FROM stdin;
+2024-03-13 17:13:07 GMT [62]: [60-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.663 ms
+2024-03-13 17:13:07 GMT [62]: [61-1] db=postgres,user=postgres,app=psql LOG:  statement: COPY public.groups_products (group_id, product_id) FROM stdin;
+2024-03-13 17:13:07 GMT [62]: [62-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.127 ms
+2024-03-13 17:13:07 GMT [62]: [63-1] db=postgres,user=postgres,app=psql LOG:  statement: COPY public.groups_relations (group_id, child_id) FROM stdin;
+2024-03-13 17:13:07 GMT [62]: [64-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.737 ms
+2024-03-13 17:13:07 GMT [62]: [65-1] db=postgres,user=postgres,app=psql LOG:  statement: COPY public.orders (id, date_of_purchase, user_login) FROM stdin;
+2024-03-13 17:13:07 GMT [62]: [66-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.536 ms
+2024-03-13 17:13:07 GMT [62]: [67-1] db=postgres,user=postgres,app=psql LOG:  statement: COPY public.products (id, file_path, name, price) FROM stdin;
+2024-03-13 17:13:07 GMT [62]: [68-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.753 ms
+2024-03-13 17:13:07 GMT [62]: [69-1] db=postgres,user=postgres,app=psql LOG:  statement: COPY public.purchases (id, amount, order_id, product_id) FROM stdin;
+2024-03-13 17:13:07 GMT [62]: [70-1] db=postgres,user=postgres,app=psql LOG:  duration: 5.396 ms
+2024-03-13 17:13:07 GMT [62]: [71-1] db=postgres,user=postgres,app=psql LOG:  statement: COPY public.roles (name) FROM stdin;
+2024-03-13 17:13:07 GMT [62]: [72-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.731 ms
+2024-03-13 17:13:07 GMT [62]: [73-1] db=postgres,user=postgres,app=psql LOG:  statement: COPY public.users (login, first_name, last_name, password) FROM stdin;
+2024-03-13 17:13:07 GMT [62]: [74-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.537 ms
+2024-03-13 17:13:07 GMT [62]: [75-1] db=postgres,user=postgres,app=psql LOG:  statement: COPY public.users_roles (user_id, role_id) FROM stdin;
+2024-03-13 17:13:07 GMT [62]: [76-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.187 ms
+2024-03-13 17:13:07 GMT [62]: [77-1] db=postgres,user=postgres,app=psql LOG:  statement: SELECT pg_catalog.setval('public.group_sequence', 36, true);
+2024-03-13 17:13:07 GMT [62]: [78-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.722 ms
+2024-03-13 17:13:07 GMT [62]: [79-1] db=postgres,user=postgres,app=psql LOG:  statement: SELECT pg_catalog.setval('public.order_sequence', 994, true);
+2024-03-13 17:13:07 GMT [62]: [80-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.565 ms
+2024-03-13 17:13:07 GMT [62]: [81-1] db=postgres,user=postgres,app=psql LOG:  statement: SELECT pg_catalog.setval('public.product_sequence', 2001, true);
+2024-03-13 17:13:07 GMT [62]: [82-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.532 ms
+2024-03-13 17:13:07 GMT [62]: [83-1] db=postgres,user=postgres,app=psql LOG:  statement: SELECT pg_catalog.setval('public.purchase_sequence', 5432, true);
+2024-03-13 17:13:07 GMT [62]: [84-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.568 ms
+2024-03-13 17:13:07 GMT [62]: [85-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.groups
+	    ADD CONSTRAINT groups_pkey PRIMARY KEY (id);
+2024-03-13 17:13:07 GMT [62]: [86-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.178 ms
+2024-03-13 17:13:07 GMT [62]: [87-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.groups_products
+	    ADD CONSTRAINT groups_products_pkey PRIMARY KEY (group_id, product_id);
+2024-03-13 17:13:07 GMT [62]: [88-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.113 ms
+2024-03-13 17:13:07 GMT [62]: [89-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.groups_relations
+	    ADD CONSTRAINT groups_relations_pkey PRIMARY KEY (group_id, child_id);
+2024-03-13 17:13:07 GMT [62]: [90-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.836 ms
+2024-03-13 17:13:07 GMT [62]: [91-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.orders
+	    ADD CONSTRAINT orders_pkey PRIMARY KEY (id);
+2024-03-13 17:13:07 GMT [62]: [92-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.888 ms
+2024-03-13 17:13:07 GMT [62]: [93-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.products
+	    ADD CONSTRAINT products_pkey PRIMARY KEY (id);
+2024-03-13 17:13:07 GMT [62]: [94-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.010 ms
+2024-03-13 17:13:07 GMT [62]: [95-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.purchases
+	    ADD CONSTRAINT purchases_pkey PRIMARY KEY (id);
+2024-03-13 17:13:07 GMT [62]: [96-1] db=postgres,user=postgres,app=psql LOG:  duration: 3.025 ms
+2024-03-13 17:13:07 GMT [62]: [97-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.roles
+	    ADD CONSTRAINT roles_pkey PRIMARY KEY (name);
+2024-03-13 17:13:07 GMT [62]: [98-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.868 ms
+2024-03-13 17:13:07 GMT [62]: [99-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.groups
+	    ADD CONSTRAINT uk_8mf0is8024pqmwjxgldfe54l7 UNIQUE (name);
+2024-03-13 17:13:07 GMT [62]: [100-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.745 ms
+2024-03-13 17:13:07 GMT [62]: [101-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.groups_relations
+	    ADD CONSTRAINT uk_agckqobouhwitsq0ia10g37uu UNIQUE (child_id);
+2024-03-13 17:13:07 GMT [62]: [102-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.298 ms
+2024-03-13 17:13:07 GMT [62]: [103-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.products
+	    ADD CONSTRAINT uk_o61fmio5yukmmiqgnxf8pnavn UNIQUE (name);
+2024-03-13 17:13:07 GMT [62]: [104-1] db=postgres,user=postgres,app=psql LOG:  duration: 3.341 ms
+2024-03-13 17:13:07 GMT [62]: [105-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.groups_products
+	    ADD CONSTRAINT uk_tk50mm3mvdrx38dlv0jbtp01v UNIQUE (product_id);
+2024-03-13 17:13:07 GMT [62]: [106-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.003 ms
+2024-03-13 17:13:07 GMT [62]: [107-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.users
+	    ADD CONSTRAINT users_pkey PRIMARY KEY (login);
+2024-03-13 17:13:07 GMT [62]: [108-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.507 ms
+2024-03-13 17:13:07 GMT [62]: [109-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.users_roles
+	    ADD CONSTRAINT users_roles_pkey PRIMARY KEY (user_id, role_id);
+2024-03-13 17:13:07 GMT [62]: [110-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.536 ms
+2024-03-13 17:13:07 GMT [62]: [111-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.users_roles
+	    ADD CONSTRAINT fk2o0jvgh89lemvvo17cbqvdxaa FOREIGN KEY (user_id) REFERENCES public.users(login);
+2024-03-13 17:13:07 GMT [62]: [112-1] db=postgres,user=postgres,app=psql LOG:  duration: 2.138 ms
+2024-03-13 17:13:07 GMT [62]: [113-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.groups_relations
+	    ADD CONSTRAINT fk5k20ekc7xbb81oetinynyy6pq FOREIGN KEY (group_id) REFERENCES public.groups(id);
+2024-03-13 17:13:07 GMT [62]: [114-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.024 ms
+2024-03-13 17:13:07 GMT [62]: [115-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.groups_products
+	    ADD CONSTRAINT fk9ecxmmu3y6lxsbxghakiselre FOREIGN KEY (product_id) REFERENCES public.products(id);
+2024-03-13 17:13:07 GMT [62]: [116-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.535 ms
+2024-03-13 17:13:07 GMT [62]: [117-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.groups_products
+	    ADD CONSTRAINT fkaac0okfr0b29bnnne920o7d4k FOREIGN KEY (group_id) REFERENCES public.groups(id);
+2024-03-13 17:13:07 GMT [62]: [118-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.907 ms
+2024-03-13 17:13:07 GMT [62]: [119-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.purchases
+	    ADD CONSTRAINT fkcacbvw28fu31rv1vrhnkcbe28 FOREIGN KEY (product_id) REFERENCES public.products(id);
+2024-03-13 17:13:07 GMT [62]: [120-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.934 ms
+2024-03-13 17:13:07 GMT [62]: [121-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.groups_relations
+	    ADD CONSTRAINT fkek5u4gheaex9xlegham26yh92 FOREIGN KEY (child_id) REFERENCES public.groups(id);
+2024-03-13 17:13:07 GMT [62]: [122-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.881 ms
+2024-03-13 17:13:07 GMT [62]: [123-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.purchases
+	    ADD CONSTRAINT fkggo75366vlws6fp6684tmem1a FOREIGN KEY (order_id) REFERENCES public.orders(id);
+2024-03-13 17:13:07 GMT [62]: [124-1] db=postgres,user=postgres,app=psql LOG:  duration: 1.453 ms
+2024-03-13 17:13:07 GMT [62]: [125-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.users_roles
+	    ADD CONSTRAINT fkj6m8fwv7oqv74fcehir1a9ffy FOREIGN KEY (role_id) REFERENCES public.roles(name);
+2024-03-13 17:13:07 GMT [62]: [126-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.941 ms
+2024-03-13 17:13:07 GMT [62]: [127-1] db=postgres,user=postgres,app=psql LOG:  statement: ALTER TABLE ONLY public.orders
+	    ADD CONSTRAINT fkqt1ft8tcj6cca719qs8cpgoci FOREIGN KEY (user_login) REFERENCES public.users(login);
+2024-03-13 17:13:07 GMT [62]: [128-1] db=postgres,user=postgres,app=psql LOG:  duration: 0.970 ms
+2024-03-13 17:13:07 GMT [62]: [129-1] db=postgres,user=postgres,app=psql LOG:  disconnection: session time: 0:00:00.097 user=postgres database=postgres host=[local]
+2024-03-13 17:13:07 GMT [49]: [6-1] db=,user=,app= LOG:  received fast shutdown request
+2024-03-13 17:13:07 GMT [49]: [7-1] db=,user=,app= LOG:  aborting any active transactions
+2024-03-13 17:13:07 GMT [49]: [8-1] db=,user=,app= LOG:  background worker "logical replication launcher" (PID 57) exited with exit code 1
+2024-03-13 17:13:07 GMT [52]: [1-1] db=,user=,app= LOG:  shutting down
+2024-03-13 17:13:07 GMT [52]: [2-1] db=,user=,app= LOG:  checkpoint starting: shutdown immediate
+2024-03-13 17:13:07 GMT [52]: [3-1] db=,user=,app= LOG:  checkpoint complete: wrote 22 buffers (34.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.032 s, total=0.039 s; sync files=55, longest=0.002 s, average=0.001 s; distance=952 kB, estimate=952 kB
+2024-03-13 17:13:07 GMT [49]: [9-1] db=,user=,app= LOG:  database system is shut down

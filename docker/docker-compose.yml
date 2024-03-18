@@ -1,0 +1,71 @@
+# docker-compose.yml
+version: '3.8'
+services:  
+  prometheus:
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+    container_name:
+      prometheus
+    image: prom/prometheus:latest
+    volumes:
+      - prometheus_data:/prometheus
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - '9090:9090'
+  grafana:
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+    image: grafana/grafana:latest
+    container_name:
+      grafana
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/config.ini:/etc/grafana/config.ini
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus
+    ports:
+      - '3000:3000'
+  postgres:
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+    container_name:
+      postgres
+    image: postgres:13.8
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres/pg_profile/pg_profile.control:/usr/share/postgresql/13/extension/pg_profile.control
+      - ./postgres/pg_profile/pg_profile--4.0--4.1.sql:/usr/share/postgresql/13/extension/pg_profile--4.0--4.1.sql
+      - ./postgres/pg_profile/pg_profile--4.1.sql:/usr/share/postgresql/13/extension/pg_profile--4.1.sql
+      - ./postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./postgres/postgresql.conf:/etc/postgres/config/postgresql.conf
+      - ./postgres/pg_log:/var/log/postgresql
+      - ./postgres/pgbench-results:/pgbench-results
+    command:
+      postgres -c config_file=/etc/postgres/config/postgresql.conf
+  postgres_exporter:
+    image: wrouesnel/postgres_exporter
+    environment:
+      DATA_SOURCE_NAME: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:5432/${POSTGRES_DB}"
+    ports:
+      - "9187:9187"
+    restart: always  
+volumes:
+  prometheus_data: {}
+  grafana_data: {}
